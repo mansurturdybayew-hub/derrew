@@ -1,99 +1,185 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Личный кабинет — Derrew</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .account-page{min-height:calc(100vh - 76px);background:#f8fafc;padding:50px 8%}
-    .account-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:30px}
-    .account-head h1{margin:0;font-size:38px;letter-spacing:-1.5px}
-    .account-layout{display:grid;grid-template-columns:250px 1fr;gap:24px}
-    .account-menu,.account-content{background:#fff;border:1px solid #e4e7ec;border-radius:18px}
-    .account-menu{padding:12px;height:max-content}
-    .account-menu a{display:block;padding:13px 15px;border-radius:10px;color:#475467;text-decoration:none;margin:3px 0}
-    .account-menu a.active,.account-menu a:hover{background:#ecfdf3;color:#087443;font-weight:700}
-    .balance{padding:25px;border-radius:16px;background:#ecfdf3;margin-bottom:22px}
-    .balance small{color:#667085}.balance strong{display:block;font-size:34px;margin-top:8px}
-    .account-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
-    .stat{padding:22px;border:1px solid #eaecf0;border-radius:14px}.stat b{display:block;font-size:22px;margin-top:8px}.stat span{color:#667085;font-size:13px}
-    .account-content{padding:28px}.account-content h2{margin-top:0}
-    .empty{padding:35px;text-align:center;color:#667085;border:1px dashed #d0d5dd;border-radius:14px}
-    @media(max-width:800px){.account-page{padding:35px 6%}.account-layout{grid-template-columns:1fr}.account-grid{grid-template-columns:1fr}.account-head{align-items:flex-start;flex-direction:column}}
-  </style>
-</head>
+<div class="account-layout">
 
-<body>
 
-<header class="header">
-  <a href="index.html" class="logo">Derrew<span>.</span></a>
-
-  <nav>
-    <a href="index.html#services">Услуги</a>
-    <a href="index.html#how">Как это работает</a>
-    <a href="index.html#help">Помощь</a>
-  </nav>
-
-  <div class="actions">
-    <button class="language">RU</button>
-    <a href="index.html" class="btn btn-outline">На главную</a>
-  </div>
-</header>
-
-<main class="account-page">
-
-  <div class="account-head">
-    <div>
-      <div class="label">ЛИЧНЫЙ КАБИНЕТ</div>
-      <h1>Здравствуйте, пользователь 👋</h1>
-    </div>
-
-    <a href="index.html" class="btn">Пополнить баланс</a>
-  </div>
-
-  <div class="account-layout">
+    <!-- Боковое меню -->
 
     <aside class="account-menu">
-      <a class="active" href="#">Обзор</a>
-      <a href="#">Профиль</a>
-      <a href="#">Мои номера</a>
-      <a href="#">История операций</a>
-      <a href="#">Промокоды</a>
-      <a href="#">Пригласи друга</a>
-      <a href="#">Уведомления</a>
-      <a href="#">Настройки</a>
-      <a href="index.html">Выйти</a>
+
+      <a class="active" href="#">
+        Обзор
+      </a>
+
+      <a href="#">
+        👤 Профиль
+      </a>
+
+      <a href="#">
+        📱 Мои номера
+      </a>
+
+      <a href="#">
+        📋 История операций
+      </a>
+
+      <a href="#">
+        🎁 Промокоды
+      </a>
+
+      <a href="#">
+        👥 Пригласи друга
+      </a>
+
+      <a href="#">
+        🔔 Уведомления
+      </a>
+
+      <a href="#">
+        ⚙️ Настройки
+      </a>
+
+      <a href="index.html">
+        🚪 Выйти
+      </a>
+
     </aside>
+
+
+    <!-- Основная часть -->
 
     <section class="account-content">
 
-      <div class="balance">
-        <small>Баланс Derrew</small>
-        <strong>0 ₽</strong>
+
+      <!-- Быстрые действия -->
+
+      <h2>
+        Быстрые действия
+      </h2>
+
+      <div class="quick-actions">
+
+        <a href="index.html#services" class="quick-action">
+
+          <div class="quick-icon">
+            📱
+          </div>
+
+          <strong>
+            Пополнить мобильный
+          </strong>
+
+          <span>
+            Пополнение номера в Туркменистане
+          </span>
+
+        </a>
+
+
+        <a href="index.html#services" class="quick-action">
+
+          <div class="quick-icon">
+            🌐
+          </div>
+
+          <strong>
+            Оплатить интернет
+          </strong>
+
+          <span>
+            Оплата домашнего интернета
+          </span>
+
+        </a>
+
+
+        <a href="index.html#services" class="quick-action">
+
+          <div class="quick-icon">
+            ☎️
+          </div>
+
+          <strong>
+            Пакет минут
+          </strong>
+
+          <span>
+            Выбор и покупка пакета минут
+          </span>
+
+        </a>
+
       </div>
 
-      <div class="account-grid">
-        <div class="stat">
-          <span>Сохранённых номеров</span>
-          <b>0</b>
+
+      <!-- Информация -->
+
+      <h2>
+        Мой аккаунт
+      </h2>
+
+      <div class="account-info">
+
+        <div class="info-card">
+
+          <span>
+            Сохранённых номеров
+          </span>
+
+          <strong>
+            0
+          </strong>
+
         </div>
 
-        <div class="stat">
-          <span>Операций</span>
-          <b>0</b>
+
+        <div class="info-card">
+
+          <span>
+            Операций
+          </span>
+
+          <strong>
+            0
+          </strong>
+
         </div>
 
-        <div class="stat">
-          <span>Бонусы</span>
-          <b>0 ₽</b>
+
+        <div class="info-card">
+
+          <span>
+            Доступных бонусов
+          </span>
+
+          <strong>
+            0
+          </strong>
+
         </div>
+
       </div>
 
-      <h2>Последние операции</h2>
+
+      <!-- История -->
+
+      <h2>
+        Последние операции
+      </h2>
 
       <div class="empty">
-        Здесь появится история пополнений и оплат.
+
+        <div class="empty-icon">
+          📋
+        </div>
+
+        <strong>
+          Пока нет операций
+        </strong>
+
+        <p>
+          Здесь появится история ваших пополнений,
+          оплат интернета и покупки пакетов минут.
+        </p>
+
       </div>
 
     </section>
@@ -102,10 +188,21 @@
 
 </main>
 
+
 <footer>
-  <div class="logo">Derrew<span>.</span></div>
-  <div>© 2026 Derrew</div>
-  <div>RU · TM · EN</div>
+
+  <div class="logo">
+    Derrew<span>.</span>
+  </div>
+
+  <div>
+    © 2026 Derrew
+  </div>
+
+  <div>
+    RU · TM · EN
+  </div>
+
 </footer>
 
 </body>
