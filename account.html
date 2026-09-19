@@ -1,63 +1,209 @@
-<div class="account-layout">
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Derrew — Личный кабинет</title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+
+</head>
 
 
-    <!-- Боковое меню -->
+<body>
+
+
+<header class="header">
+
+  <a href="index.html" class="logo">
+    Derrew<span>.</span>
+  </a>
+
+
+  <nav>
+
+    <a href="index.html#services">
+      Услуги
+    </a>
+
+    <a href="index.html#how">
+      Как это работает
+    </a>
+
+    <a href="index.html#help">
+      Помощь
+    </a>
+
+  </nav>
+
+
+  <div class="actions">
+
+    <button class="language">
+      RU
+    </button>
+
+    <a
+      href="index.html"
+      class="btn btn-outline"
+      id="homeButton"
+    >
+      На главную
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+  <div class="account-layout">
+
+
+    <!-- ========================= -->
+    <!-- БОКОВОЕ МЕНЮ -->
+    <!-- ========================= -->
 
     <aside class="account-menu">
 
-      <a class="active" href="#">
+
+      <a
+        class="active"
+        href="#"
+      >
         Обзор
       </a>
 
-      <a href="#">
+
+      <a href="#profile">
         👤 Профиль
       </a>
 
-      <a href="#">
+
+      <a href="#numbers">
         📱 Мои номера
       </a>
 
-      <a href="#">
+
+      <a href="#history">
         📋 История операций
       </a>
 
-      <a href="#">
+
+      <a href="#promo">
         🎁 Промокоды
       </a>
 
-      <a href="#">
+
+      <a href="#referral">
         👥 Пригласи друга
       </a>
 
-      <a href="#">
+
+      <a href="#notifications">
         🔔 Уведомления
       </a>
 
-      <a href="#">
+
+      <a href="#settings">
         ⚙️ Настройки
       </a>
 
-      <a href="index.html">
+
+      <a
+        href="#"
+        id="logoutButton"
+      >
         🚪 Выйти
       </a>
+
 
     </aside>
 
 
-    <!-- Основная часть -->
+
+    <!-- ========================= -->
+    <!-- ОСНОВНАЯ ЧАСТЬ -->
+    <!-- ========================= -->
 
     <section class="account-content">
 
 
-      <!-- Быстрые действия -->
+      <!-- ПРИВЕТСТВИЕ -->
+
+      <div
+        style="
+          margin-bottom: 30px;
+          padding: 24px;
+          border-radius: 16px;
+          background: #f5f5f5;
+        "
+      >
+
+        <div
+          class="label"
+          style="margin-bottom: 8px;"
+        >
+          ЛИЧНЫЙ КАБИНЕТ
+        </div>
+
+
+        <h1
+          style="
+            margin: 0 0 10px 0;
+          "
+        >
+          Добро пожаловать в Derrew
+        </h1>
+
+
+        <p
+          id="userEmail"
+          style="
+            margin: 0;
+            opacity: 0.7;
+          "
+        >
+          Загрузка...
+        </p>
+
+      </div>
+
+
+
+      <!-- ========================= -->
+      <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
+      <!-- ========================= -->
 
       <h2>
         Быстрые действия
       </h2>
 
+
       <div class="quick-actions">
 
-        <a href="index.html#services" class="quick-action">
+
+        <a
+          href="index.html#services"
+          class="quick-action"
+        >
 
           <div class="quick-icon">
             📱
@@ -74,7 +220,11 @@
         </a>
 
 
-        <a href="index.html#services" class="quick-action">
+
+        <a
+          href="index.html#services"
+          class="quick-action"
+        >
 
           <div class="quick-icon">
             🌐
@@ -91,7 +241,11 @@
         </a>
 
 
-        <a href="index.html#services" class="quick-action">
+
+        <a
+          href="index.html#services"
+          class="quick-action"
+        >
 
           <div class="quick-icon">
             ☎️
@@ -107,16 +261,22 @@
 
         </a>
 
+
       </div>
 
 
-      <!-- Информация -->
 
-      <h2>
+      <!-- ========================= -->
+      <!-- МОЙ АККАУНТ -->
+      <!-- ========================= -->
+
+      <h2 id="profile">
         Мой аккаунт
       </h2>
 
+
       <div class="account-info">
+
 
         <div class="info-card">
 
@@ -126,9 +286,8 @@
 
           <strong>
             0
-          </strong>
+              </div>
 
-        </div>
 
 
         <div class="info-card">
@@ -144,6 +303,7 @@
         </div>
 
 
+
         <div class="info-card">
 
           <span>
@@ -156,54 +316,478 @@
 
         </div>
 
+
       </div>
 
 
-      <!-- История -->
+
+      <!-- ========================= -->
+      <!-- ДАННЫЕ ПОЛЬЗОВАТЕЛЯ -->
+      <!-- ========================= -->
 
       <h2>
-        Последние операции
+        Мои данные
       </h2>
 
-      <div class="empty">
 
-        <div class="empty-icon">
-          📋
+      <div
+        class="account-info"
+        style="margin-bottom: 40px;"
+      >
+
+
+        <div class="info-card">
+
+          <span>
+            Email
+          </span>
+
+          <strong
+            id="profileEmail"
+            style="
+              font-size: 16px;
+              word-break: break-word;
+            "
+          >
+            Загрузка...
+          </strong>
+
         </div>
 
-        <strong>
-          Пока нет операций
-        </strong>
 
-        <p>
-          Здесь появится история ваших пополнений,
-          оплат интернета и покупки пакетов минут.
-        </p>
+
+        <div class="info-card">
+
+          <span>
+            Номер телефона
+          </span>
+
+          <strong
+            id="profilePhone"
+            style="
+              font-size: 16px;
+            "
+          >
+            Загрузка...
+          </strong>
+
+        </div>
+
 
       </div>
+
+
+
+      <!-- ========================= -->
+      <!-- МОИ НОМЕРА -->
+      <!-- ========================= -->
+
+      <div id="numbers">
+
+        <h2>
+          Мои номера
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            📱
+          </div>
+
+          <strong>
+            Пока нет сохранённых номеров
+          </strong>
+
+          <p>
+            Здесь появятся номера, которые вы сохраните
+            для быстрых пополнений и оплат.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ========================= -->
+      <!-- ИСТОРИЯ -->
+      <!-- ========================= -->
+
+      <div id="history">
+
+        <h2>
+          Последние операции
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            📋
+          </div>
+
+          <strong>
+            Пока нет операций
+          </strong>
+
+          <p>
+            Здесь появится история ваших пополнений,
+            оплат интернета и покупки пакетов минут.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ========================= -->
+      <!-- ПРОМОКОДЫ -->
+      <!-- ========================= -->
+
+      <div
+        id="promo"
+        style="margin-top: 40px;"
+      >
+
+        <h2>
+          Промокоды
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🎁
+          </div>
+
+          <strong>
+            Пока нет активных промокодов
+          </strong>
+
+          <p>
+            Здесь будут отображаться ваши промокоды
+            и специальные предложения.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ========================= -->
+      <!-- ПРИГЛАСИ ДРУГА -->
+      <!-- ========================= -->
+
+      <div
+        id="referral"
+        style="margin-top: 40px;"
+      >
+
+        <h2>
+          Пригласи друга
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            👥
+          </div>
+
+          <strong>
+            Реферальная программа
+          </strong>
+
+          <p>
+            Здесь появится ваша персональная ссылка
+            для приглашения друзей.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ========================= -->
+      <!-- УВЕДОМЛЕНИЯ -->
+      <!-- ========================= -->
+
+      <div
+        id="notifications"
+        style="margin-top: 40px;"
+      >
+
+        <h2>
+          Уведомления
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🔔
+          </div>
+
+          <strong>
+            Пока нет уведомлений
+          </strong>
+
+          <p>
+            Здесь будут появляться важные сообщения
+            о ваших операциях и услугах.
+          </p>
+
+        </div>
+
+      </div>
+        <!-- ========================= -->
+      <!-- НАСТРОЙКИ -->
+      <!-- ========================= -->
+
+      <div
+        id="settings"
+        style="margin-top: 40px;"
+      >
+
+        <h2>
+          Настройки
+        </h2>
+
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            ⚙️
+          </div>
+
+          <strong>
+            Настройки аккаунта
+          </strong>
+
+          <p>
+            Настройки языка и уведомлений добавим
+            на следующем этапе.
+          </p>
+
+        </div>
+
+      </div>
+
 
     </section>
 
   </div>
 
+
 </main>
 
 
+
 <footer>
+
 
   <div class="logo">
     Derrew<span>.</span>
   </div>
 
+
   <div>
     © 2026 Derrew
   </div>
+
 
   <div>
     RU · TM · EN
   </div>
 
+
 </footer>
 
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://vrcyoxcfrjwxbnnrlpjy.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_3KP6ogFkjKG3DuE0eeTyiw_eLlnzLDw";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   ЭЛЕМЕНТЫ
+========================================= */
+
+const userEmail =
+  document.getElementById("userEmail");
+
+
+const profileEmail =
+  document.getElementById("profileEmail");
+
+
+const profilePhone =
+  document.getElementById("profilePhone");
+
+
+const logoutButton =
+  document.getElementById("logoutButton");
+
+
+/* =========================================
+   ЗАГРУЗКА ПОЛЬЗОВАТЕЛЯ
+========================================= */
+
+async function loadAccount() {
+
+
+  const result =
+    await supabaseClient.auth.getSession();
+
+
+  const session =
+    result.data.session;
+
+
+  /* ===============================
+     ЕСЛИ НЕ АВТОРИЗОВАН
+  =============================== */
+
+  if (!session) {
+
+    window.location.href =
+      "index.html";
+
+    return;
+
+  }
+
+
+  const user =
+    session.user;
+
+
+  /* ===============================
+     EMAIL
+  =============================== */
+
+  const email =
+    user.email || "Не указан";
+
+
+  userEmail.textContent =
+    email;
+
+
+  profileEmail.textContent =
+    email;
+
+
+  /* ===============================
+     ТЕЛЕФОН
+  =============================== */
+
+  let phone =
+    user.user_metadata?.phone || null;
+
+
+  /* ===============================
+     ПОЛУЧАЕМ ПРОФИЛЬ
+  =============================== */
+
+  const profileResult =
+    await supabaseClient
+      .from("profiles")
+      .select("phone")
+      .eq("id", user.id)
+      .maybeSingle();
+
+
+  if (
+    profileResult.data &&
+    profileResult.data.phone
+  ) {
+
+    phone =
+      profileResult.data.phone;
+
+  }
+
+
+  profilePhone.textContent =
+    phone || "Не указан";
+
+
+}
+
+
+/* =========================================
+   ВЫХОД
+========================================= */
+
+logoutButton.addEventListener(
+  "click",
+  async function(event) {
+
+    event.preventDefault();
+
+
+    logoutButton.textContent =
+      "Выходим...";
+
+
+    const result =
+      await supabaseClient.auth.signOut();
+
+
+    if (result.error) {
+
+      logoutButton.textContent =
+        "🚪 Выйти";
+
+      alert(
+        "Не удалось выйти из аккаунта: " +
+        result.error.message
+      );
+
+      return;
+
+    }
+
+
+    window.location.href =
+      "index.html";
+
+  }
+);
+
+
+/* =========================================
+   ЗАПУСК
+========================================= */
+
+loadAccount();
+
+</script>
+
+
 </body>
+
 </html>
+          </strong>
