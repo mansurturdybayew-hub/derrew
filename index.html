@@ -1,210 +1,192 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Derrew — услуги Туркменистана онлайн</title>
-  <meta name="description" content="Derrew — мобильная связь, домашний интернет и пакеты минут в Туркменистане.">
-  <link rel="stylesheet" href="styles.css">
-</head>
+}
 
-<body>
+        }
 
-<header class="header">
-  <a href="#" class="logo">Derrew<span>.</span></a>
+      });
 
-  <nav>
-    <a href="#services">Услуги</a>
-    <a href="#how">Как это работает</a>
-    <a href="#help">Помощь</a>
-  </nav>
 
-  <div class="actions">
-    <button class="language">RU</button>
-    <button class="btn btn-outline">Войти</button>
-    <button class="btn">Регистрация</button>
-  </div>
-</header>
+    if (error) {
 
-<main>
+      showError(error.message);
 
-<section class="hero">
+      return;
 
-  <div class="hero-text">
+    }
 
-    <div class="label">УСЛУГИ ТУРКМЕНИСТАНА ОНЛАЙН</div>
 
-    <h1>
-      Пополняйте и оплачивайте услуги
-      <span>Derrew</span>
-    </h1>
+    /*
+      Если Supabase сразу создал сессию,
+      создаём профиль пользователя.
+    */
 
-    <p>
-      Мобильная связь, домашний интернет и пакеты минут —
-      всё в одном месте.
-    </p>
+    if (data.session && data.user) {
 
-    <div class="hero-buttons">
-      <a href="#services" class="btn big-btn">
-        Выбрать услугу
-      </a>
+      await db
+        .from("profiles")
+        .upsert({
 
-      <a href="#how" class="how-link">
-        Как это работает →
-      </a>
-    </div>
+          id: data.user.id,
 
-  </div>
+          phone: phone
 
-  <div class="quick-card">
+        });
 
-    <div class="label">БЫСТРАЯ ОПЛАТА</div>
 
-    <h2>Что хотите оплатить?</h2>
+      showSuccess(
+        "Аккаунт создан. Сейчас откроется личный кабинет."
+      );
 
-    <a href="#services" class="quick-item">
-      <span>📱</span>
-      <strong>Мобильная связь</strong>
-      <b>→</b>
-    </a>
 
-    <a href="#services" class="quick-item">
-      <span>🌐</span>
-      <strong>Домашний интернет</strong>
-      <b>→</b>
-    </a>
+      setTimeout(() => {
 
-    <a href="#services" class="quick-item">
-      <span>☎️</span>
-      <strong>Пакеты минут</strong>
-      <b>→</b>
-    </a>
+        window.location.href = "account.html";
 
-  </div>
+      }, 1000);
 
-</section>
+      return;
 
+    }
 
-<section id="services" class="section">
 
-  <div class="label">УСЛУГИ</div>
+    /*
+      Если включено подтверждение email
+    */
 
-  <h2>Всё необходимое в одном месте</h2>
+    showSuccess(
+      "Аккаунт создан. Проверьте почту и подтвердите email."
+    );
 
-  <div class="services-grid">
+    return;
 
-    <div class="service-card">
-      <div class="service-icon">📱</div>
+  }
 
-      <h3>Пополнение мобильного</h3>
 
-      <p>
-        Пополните баланс номера в Туркменистане.
-      </p>
+  /* =========================
+     ВХОД
+  ========================= */
 
-      <a href="#">Пополнить →</a>
-    </div>
+  const { data, error } =
+    await db.auth.signInWithPassword({
 
+      email: email,
 
-    <div class="service-card">
-      <div class="service-icon">🌐</div>
+      password: password
 
-      <h3>Домашний интернет</h3>
+    });
 
-      <p>
-        Оплатите домашний интернет быстро и удобно.
-      </p>
 
-      <a href="#">Оплатить →</a>
-    </div>
+  if (error) {
 
+    showError(
+      "Не удалось войти: " + error.message
+    );
 
-    <div class="service-card">
-      <div class="service-icon">☎️</div>
+    return;
 
-      <h3>Пакеты минут</h3>
+  }
 
-      <p>
-        Выберите пакет минут для нужного номера.
-      </p>
 
-      <a href="#">Выбрать →</a>
-    </div>
+  if (data.user) {
 
-  </div>
+    /*
+      Создаём профиль, если его ещё нет.
+    */
 
-</section>
+    await db
+      .from("profiles")
+      .upsert({
 
+        id: data.user.id,
 
-<section id="how" class="section how">
+        phone:
+          data.user.user_metadata?.phone || null
 
-  <div class="label">ПРОСТО</div>
+      });
 
-  <h2>Как это работает</h2>
 
-  <div class="steps">
+    showSuccess(
+      "Вход выполнен. Переходим в личный кабинет..."
+    );
 
-    <div class="step">
-      <span>01</span>
-      <h3>Выберите услугу</h3>
-      <p>Укажите нужную услугу.</p>
-    </div>
 
-    <div class="step">
-      <span>02</span>
-      <h3>Введите данные</h3>
-      <p>Укажите номер телефона или лицевой счёт.</p>
-    </div>
+    setTimeout(() => {
 
-    <div class="step">
-      <span>03</span>
-      <h3>Оплатите</h3>
-      <p>Проверьте сумму и завершите оплату.</p>
-    </div>
+      window.location.href = "account.html";
 
-    <div class="step">
-      <span>04</span>
-      <h3>Готово</h3>
-      <p>Получите подтверждение операции.</p>
-    </div>
+    }, 700);
 
-  </div>
+  }
 
-</section>
+}
 
 
-<section id="help" class="help">
+/* ==========================================
+   ПРОВЕРКА ТЕКУЩЕГО ПОЛЬЗОВАТЕЛЯ
+========================================== */
 
-  <div>
-    <div class="label">ПОДДЕРЖКА</div>
+async function checkUser() {
 
-    <h2>Нужна помощь?</h2>
+  const { data } =
+    await db.auth.getSession();
 
-    <p>
-      Поддержка Derrew поможет разобраться с услугами и платежами.
-    </p>
-  </div>
+  const session =
+    data.session;
 
-  <button class="btn">
-    Написать в поддержку
-  </button>
 
-</section>
+  if (!session) {
 
-</main>
+    return;
 
+  }
 
-<footer>
 
-  <div class="logo">
-    Derrew<span>.</span>
-  </div>
+  const loginBtn =
+    document.getElementById("loginBtn");
 
-  <div>© 2026 Derrew</div>
+  const registerBtn =
+    document.getElementById("registerBtn");
 
-  <div>RU · TM · EN</div>
 
-</footer>
+  loginBtn.textContent =
+    "Личный кабинет";
+
+  loginBtn.onclick = () => {
+
+    window.location.href = "account.html";
+
+  };
+
+
+  registerBtn.style.display =
+    "none";
+
+}
+
+
+/* ==========================================
+   ЗАПУСК
+========================================== */
+
+checkUser();
+
+
+/* ==========================================
+   КЛИК ПО ФОНУ МОДАЛЬНОГО ОКНА
+========================================== */
+
+document
+  .getElementById("authModal")
+  .addEventListener("click", function(event) {
+
+    if (event.target === this) {
+
+      closeAuth();
+
+    }
+
+  });
+
+</script>
 
 </body>
 </html>
