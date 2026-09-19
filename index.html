@@ -1,190 +1,977 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Derrew — услуги Туркменистана онлайн</title>
+
+  <meta
+    name="description"
+    content="Derrew — мобильная связь, домашний интернет и пакеты минут в Туркменистане."
+  >
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<header class="header">
+
+  <a href="#" class="logo">
+    Derrew<span>.</span>
+  </a>
+
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#how">Как это работает</a>
+    <a href="#help">Помощь</a>
+  </nav>
+
+  <div class="actions">
+
+    <button class="language">RU</button>
+
+    <button
+      class="btn btn-outline"
+      id="loginBtn"
+      type="button"
+    >
+      Войти
+    </button>
+
+    <button
+      class="btn"
+      id="registerBtn"
+      type="button"
+    >
+      Регистрация
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <div class="label">
+      УСЛУГИ ТУРКМЕНИСТАНА ОНЛАЙН
+    </div>
+
+    <h1>
+      Пополняйте и оплачивайте услуги
+      <span>Derrew</span>
+    </h1>
+
+    <p>
+      Мобильная связь, домашний интернет и пакеты минут —
+      всё в одном месте.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#services" class="btn big-btn">
+        Выбрать услугу
+      </a>
+
+      <a href="#how" class="how-link">
+        Как это работает →
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="quick-card">
+
+    <div class="label">
+      БЫСТРАЯ ОПЛАТА
+    </div>
+
+    <h2>
+      Что хотите оплатить?
+    </h2>
+
+    <a href="#services" class="quick-item">
+      <span>📱</span>
+      <strong>Мобильная связь</strong>
+      <b>→</b>
+    </a>
+
+    <a href="#services" class="quick-item">
+      <span>🌐</span>
+      <strong>Домашний интернет</strong>
+      <b>→</b>
+    </a>
+
+    <a href="#services" class="quick-item">
+      <span>☎️</span>
+      <strong>Пакеты минут</strong>
+      <b>→</b>
+    </a>
+
+  </div>
+
+</section>
+
+
+<section id="services" class="section">
+
+  <div class="label">
+    УСЛУГИ
+  </div>
+
+  <h2>
+    Всё необходимое в одном месте
+  </h2>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        📱
+      </div>
+
+      <h3>
+        Пополнение мобильного
+      </h3>
+
+      <p>
+        Пополните баланс номера в Туркменистане.
+      </p>
+
+      <a href="#">
+        Пополнить →
+      </a>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        🌐
+      </div>
+
+      <h3>
+        Домашний интернет
+      </h3>
+
+      <p>
+        Оплатите домашний интернет быстро и удобно.
+      </p>
+
+      <a href="#">
+        Оплатить →
+      </a>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        ☎️
+      </div>
+
+      <h3>
+        Пакеты минут
+      </h3>
+
+      <p>
+        Выберите пакет минут для нужного номера.
+      </p>
+
+      <a href="#">
+        Выбрать →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="how" class="section how">
+
+  <div class="label">
+    ПРОСТО
+  </div>
+
+  <h2>
+    Как это работает
+  </h2>
+
+  <div class="steps">
+
+    <div class="step">
+      <span>01</span>
+      <h3>Выберите услугу</h3>
+      <p>Укажите нужную услугу.</p>
+    </div>
+
+    <div class="step">
+      <span>02</span>
+      <h3>Введите данные</h3>
+      <p>Укажите номер телефона или лицевой счёт.</p>
+    </div>
+
+    <div class="step">
+      <span>03</span>
+      <h3>Оплатите</h3>
+      <p>Проверьте сумму и завершите оплату.</p>
+    </div>
+
+    <div class="step">
+      <span>04</span>
+      <h3>Готово</h3>
+      <p>Получите подтверждение операции.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="help" class="help">
+
+  <div>
+
+    <div class="label">
+      ПОДДЕРЖКА
+    </div>
+
+    <h2>
+      Нужна помощь?
+    </h2>
+
+    <p>
+      Поддержка Derrew поможет разобраться с услугами и платежами.
+    </p>
+
+  </div>
+  <button class="btn" type="button">
+    Написать в поддержку
+  </button>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="logo">
+    Derrew<span>.</span>
+  </div>
+
+  <div>
+    © 2026 Derrew
+  </div>
+
+  <div>
+    RU · TM · EN
+  </div>
+
+</footer>
+
+
+<!-- ОКНО АВТОРИЗАЦИИ -->
+
+<div id="authModal" class="auth-modal">
+
+  <div class="auth-box">
+
+    <button
+      id="closeAuth"
+      class="auth-close"
+      type="button"
+    >
+      ×
+    </button>
+
+    <h2 id="authTitle">
+      Войти
+    </h2>
+
+
+    <div id="phoneField" class="auth-field hidden">
+
+      <label for="phoneInput">
+        Номер телефона
+      </label>
+
+      <input
+        id="phoneInput"
+        type="tel"
+        placeholder="+993..."
+      >
+
+    </div>
+
+
+    <div class="auth-field">
+
+      <label for="emailInput">
+        Email
+      </label>
+
+      <input
+        id="emailInput"
+        type="email"
+        placeholder="example@email.com"
+      >
+
+    </div>
+
+
+    <div class="auth-field">
+
+      <label for="passwordInput">
+        Пароль
+      </label>
+
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Введите пароль"
+      >
+
+    </div>
+
+
+    <div
+      id="authMessage"
+      class="auth-message"
+    ></div>
+
+
+    <button
+      id="authSubmit"
+      class="btn auth-submit"
+      type="button"
+    >
+      Войти
+    </button>
+
+
+    <div class="auth-switch">
+
+      <span id="switchQuestion">
+        Нет аккаунта?
+      </span>
+
+      <button
+        id="switchAuth"
+        type="button"
+      >
+        Регистрация
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+/* Окно авторизации */
+
+.auth-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-        }
+.auth-modal.active {
+  display: flex;
+}
 
-      });
+.auth-box {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.auth-box h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.auth-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.auth-field {
+  margin-bottom: 16px;
+}
+
+.auth-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.auth-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.auth-submit {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.auth-message {
+  min-height: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.auth-message.error {
+  color: #c62828;
+}
+
+.auth-message.success {
+  color: #2e7d32;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.auth-switch button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+</style>
 
 
-    if (error) {
+<script>
 
-      showError(error.message);
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://vrcyoxcfrjwxbnnrlpjy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_3KP6ogFkjKG3DuE0eeTyiw_eLlnzLDw";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   ЭЛЕМЕНТЫ
+========================================= */
+
+const authModal =
+  document.getElementById("authModal");
+
+const authTitle =
+  document.getElementById("authTitle");
+
+const authSubmit =
+  document.getElementById("authSubmit");
+
+const authMessage =
+  document.getElementById("authMessage");
+
+const phoneField =
+  document.getElementById("phoneField");
+
+const phoneInput =
+  document.getElementById("phoneInput");
+
+const emailInput =
+  document.getElementById("emailInput");
+
+const passwordInput =
+  document.getElementById("passwordInput");
+
+const switchQuestion =
+        document.getElementById("switchQuestion");
+
+const switchAuth =
+  document.getElementById("switchAuth");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const registerBtn =
+  document.getElementById("registerBtn");
+
+const closeAuth =
+  document.getElementById("closeAuth");
+
+
+let authMode = "login";
+
+
+/* =========================================
+   ОТКРЫТЬ АВТОРИЗАЦИЮ
+========================================= */
+
+function openAuth(mode) {
+
+  authMode = mode;
+
+  authModal.classList.add("active");
+
+  clearMessage();
+
+  emailInput.value = "";
+  passwordInput.value = "";
+  phoneInput.value = "";
+
+  updateAuthMode();
+
+}
+
+
+/* =========================================
+   ЗАКРЫТЬ
+========================================= */
+
+function closeAuthWindow() {
+
+  authModal.classList.remove("active");
+
+  clearMessage();
+
+}
+
+
+/* =========================================
+   РЕЖИМ LOGIN / REGISTER
+========================================= */
+
+function updateAuthMode() {
+
+  if (authMode === "login") {
+
+    authTitle.textContent = "Войти";
+
+    authSubmit.textContent = "Войти";
+
+    phoneField.classList.add("hidden");
+
+    switchQuestion.textContent =
+      "Нет аккаунта?";
+
+    switchAuth.textContent =
+      "Регистрация";
+
+  } else {
+
+    authTitle.textContent =
+      "Создать аккаунт";
+
+    authSubmit.textContent =
+      "Зарегистрироваться";
+
+    phoneField.classList.remove("hidden");
+
+    switchQuestion.textContent =
+      "Уже есть аккаунт?";
+
+    switchAuth.textContent =
+      "Войти";
+
+  }
+
+}
+
+
+/* =========================================
+   СООБЩЕНИЯ
+========================================= */
+
+function showError(message) {
+
+  authMessage.textContent = message;
+
+  authMessage.className =
+    "auth-message error";
+
+}
+
+
+function showSuccess(message) {
+
+  authMessage.textContent = message;
+
+  authMessage.className =
+    "auth-message success";
+
+}
+
+
+function clearMessage() {
+
+  authMessage.textContent = "";
+
+  authMessage.className =
+    "auth-message";
+
+}
+
+
+/* =========================================
+   КНОПКИ
+========================================= */
+
+loginBtn.addEventListener(
+  "click",
+  function () {
+
+    openAuth("login");
+
+  }
+);
+
+
+registerBtn.addEventListener(
+  "click",
+  function () {
+
+    openAuth("register");
+
+  }
+);
+
+
+closeAuth.addEventListener(
+  "click",
+  closeAuthWindow
+);
+
+
+switchAuth.addEventListener(
+  "click",
+  function () {
+
+    if (authMode === "login") {
+
+      authMode = "register";
+
+    } else {
+
+      authMode = "login";
+
+    }
+
+    clearMessage();
+
+    updateAuthMode();
+
+  }
+);
+
+
+/* =========================================
+   ЗАКРЫТЬ ПО ФОНУ
+========================================= */
+
+authModal.addEventListener(
+  "click",
+  function (event) {
+
+    if (event.target === authModal) {
+
+      closeAuthWindow();
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   РЕГИСТРАЦИЯ / ВХОД
+========================================= */
+
+authSubmit.addEventListener(
+  "click",
+  async function () {
+
+    clearMessage();
+
+    const email =
+      emailInput.value.trim();
+
+    const password =
+      passwordInput.value;
+
+    const phone =
+      phoneInput.value.trim();
+
+
+    if (!email) {
+
+      showError("Введите email.");
 
       return;
 
     }
 
 
-    /*
-      Если Supabase сразу создал сессию,
-      создаём профиль пользователя.
-    */
+    if (!password) {
 
-    if (data.session && data.user) {
+      showError("Введите пароль.");
 
-      await db
+      return;
+
+    }
+
+
+    if (password.length < 6) {
+
+      showError(
+        "Пароль должен содержать минимум 6 символов."
+      );
+
+      return;
+
+    }
+
+
+    /* =====================================
+       РЕГИСТРАЦИЯ
+    ===================================== */
+
+    if (authMode === "register") {
+
+      if (!phone) {
+
+        showError(
+          "Введите номер телефона."
+        );
+
+        return;
+
+      }
+
+
+      const result =
+        await supabaseClient.auth.signUp({
+
+          email: email,
+
+          password: password,
+
+          options: {
+
+            data: {
+              phone: phone
+            },
+
+            emailRedirectTo:
+              window.location.origin +
+                    window.location.pathname
+
+          }
+
+        });
+
+
+      if (result.error) {
+
+        showError(
+          result.error.message
+        );
+
+        return;
+
+      }
+
+
+      if (result.data.session) {
+
+        await supabaseClient
+          .from("profiles")
+          .upsert({
+
+            id: result.data.user.id,
+
+            phone: phone
+
+          });
+
+
+        showSuccess(
+          "Аккаунт создан!"
+        );
+
+
+        setTimeout(
+          function () {
+
+            window.location.href =
+              "account.html";
+
+          },
+          800
+        );
+
+      } else {
+
+        showSuccess(
+          "Аккаунт создан. Проверьте вашу почту и подтвердите email."
+        );
+
+      }
+
+      return;
+
+    }
+
+
+    /* =====================================
+       ВХОД
+    ===================================== */
+
+    const result =
+      await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+
+        password: password
+
+      });
+
+
+    if (result.error) {
+
+      showError(
+        "Не удалось войти: " +
+        result.error.message
+      );
+
+      return;
+
+    }
+
+
+    if (result.data.user) {
+
+      await supabaseClient
         .from("profiles")
         .upsert({
 
-          id: data.user.id,
+          id: result.data.user.id,
 
-          phone: phone
+          phone:
+            result.data.user.user_metadata?.phone ||
+            null
 
         });
 
 
       showSuccess(
-        "Аккаунт создан. Сейчас откроется личный кабинет."
+        "Вход выполнен!"
       );
 
 
-      setTimeout(() => {
+      setTimeout(
+        function () {
 
-        window.location.href = "account.html";
+          window.location.href =
+            "account.html";
 
-      }, 1000);
-
-      return;
+        },
+        700
+      );
 
     }
 
-
-    /*
-      Если включено подтверждение email
-    */
-
-    showSuccess(
-      "Аккаунт создан. Проверьте почту и подтвердите email."
-    );
-
-    return;
-
   }
+);
 
 
-  /* =========================
-     ВХОД
-  ========================= */
+/* =========================================
+   ПРОВЕРКА СЕССИИ
+========================================= */
 
-  const { data, error } =
-    await db.auth.signInWithPassword({
+async function checkSession() {
 
-      email: email,
-
-      password: password
-
-    });
-
-
-  if (error) {
-
-    showError(
-      "Не удалось войти: " + error.message
-    );
-
-    return;
-
-  }
-
-
-  if (data.user) {
-
-    /*
-      Создаём профиль, если его ещё нет.
-    */
-
-    await db
-      .from("profiles")
-      .upsert({
-
-        id: data.user.id,
-
-        phone:
-          data.user.user_metadata?.phone || null
-
-      });
-
-
-    showSuccess(
-      "Вход выполнен. Переходим в личный кабинет..."
-    );
-
-
-    setTimeout(() => {
-
-      window.location.href = "account.html";
-
-    }, 700);
-
-  }
-
-}
-
-
-/* ==========================================
-   ПРОВЕРКА ТЕКУЩЕГО ПОЛЬЗОВАТЕЛЯ
-========================================== */
-
-async function checkUser() {
-
-  const { data } =
-    await db.auth.getSession();
+  const result =
+    await supabaseClient.auth.getSession();
 
   const session =
-    data.session;
+    result.data.session;
 
 
-  if (!session) {
+  if (session) {
 
-    return;
+    loginBtn.textContent =
+      "Личный кабинет";
+
+    loginBtn.onclick =
+      function () {
+
+        window.location.href =
+          "account.html";
+
+      };
+
+    registerBtn.style.display =
+      "none";
 
   }
-
-
-  const loginBtn =
-    document.getElementById("loginBtn");
-
-  const registerBtn =
-    document.getElementById("registerBtn");
-
-
-  loginBtn.textContent =
-    "Личный кабинет";
-
-  loginBtn.onclick = () => {
-
-    window.location.href = "account.html";
-
-  };
-
-
-  registerBtn.style.display =
-    "none";
 
 }
 
 
-/* ==========================================
-   ЗАПУСК
-========================================== */
-
-checkUser();
-
-
-/* ==========================================
-   КЛИК ПО ФОНУ МОДАЛЬНОГО ОКНА
-========================================== */
-
-document
-  .getElementById("authModal")
-  .addEventListener("click", function(event) {
-
-    if (event.target === this) {
-
-      closeAuth();
-
-    }
-
-  });
+checkSession();
 
 </script>
 
