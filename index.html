@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -32,7 +33,9 @@
 
   <div class="actions">
 
-    <button class="language">RU</button>
+    <button class="language" type="button">
+      RU
+    </button>
 
     <button
       class="btn btn-outline"
@@ -465,7 +468,7 @@
       class="btn topup-submit"
       type="button"
     >
-      Пополнить
+      Создать заказ
     </button>
 
   </div>
@@ -957,6 +960,15 @@
   border: none;
 
   cursor: pointer;
+
+}
+
+
+.topup-submit:disabled {
+
+  opacity: 0.65;
+
+  cursor: wait;
 
 }
 
@@ -1680,22 +1692,8 @@ authSubmit.addEventListener(
 
 
 /* =========================================
-   ПОПОЛНЕНИЕ МОБИЛЬНОГО
+   КУРСЫ
 ========================================= */
-
-
-/*
-  КУРСЫ ПОКА ЗАДАЮТСЯ ВРУЧНУЮ.
-
-  Здесь:
-
-  1 TMT = 57.50 RUB
-
-  1 TMT = 16.20 TRY
-
-  Позже подключим автоматическое
-  получение курса.
-*/
 
 const MANUAL_RATES = {
 
@@ -1799,6 +1797,12 @@ function openTopup() {
 
   topupMessage.className =
     "topup-message";
+
+  topupSubmit.disabled =
+    false;
+
+  topupSubmit.textContent =
+    "Создать заказ";
 
   updatePaymentCalculation();
 
@@ -1953,8 +1957,6 @@ function updatePaymentCalculation() {
     );
 
 
-  /* Если страна ещё не определена */
-
   if (!country) {
 
     payerFlag.src =
@@ -1982,8 +1984,6 @@ function updatePaymentCalculation() {
 
 
 
-  /* Показываем настоящий флаг */
-
   payerFlag.src =
     country.flag;
 
@@ -1991,8 +1991,6 @@ function updatePaymentCalculation() {
     country.name;
 
 
-
-  /* Подсказка */
 
   if (
     country.code === "RU"
@@ -2010,8 +2008,6 @@ function updatePaymentCalculation() {
 
 
 
-  /* Если сумма не введена */
-
   if (
     !amount ||
     amount <= 0
@@ -2026,8 +2022,6 @@ function updatePaymentCalculation() {
   }
 
 
-
-  /* Расчёт */
 
   const total =
     amount *
@@ -2086,7 +2080,9 @@ closeTopup.addEventListener(
 
 
 
-/* Закрытие по фону */
+/* =========================================
+   ЗАКРЫТИЕ ПО ФОНУ
+========================================= */
 
 topupModal.addEventListener(
   "click",
@@ -2123,7 +2119,43 @@ tmtAmountInput.addEventListener(
 
 
 /* =========================================
-   КНОПКА ПОПОЛНИТЬ
+   ПОКАЗАТЬ ОШИБКУ ПОПОЛНЕНИЯ
+========================================= */
+
+function showTopupError(
+  message
+) {
+
+  topupMessage.textContent =
+    message;
+
+  topupMessage.className =
+    "topup-message error";
+
+}
+
+
+
+/* =========================================
+   ПОКАЗАТЬ УСПЕХ
+========================================= */
+
+function showTopupSuccess(
+  message
+) {
+
+  topupMessage.textContent =
+    message;
+
+  topupMessage.className =
+    "topup-message success";
+
+}
+
+
+
+/* =========================================
+   СОЗДАНИЕ ЗАКАЗА
 ========================================= */
 
 topupSubmit.addEventListener(
@@ -2156,15 +2188,15 @@ topupSubmit.addEventListener(
 
 
 
-    /* Проверка номера TM */
+    /* =====================================
+       ПРОВЕРКА НОМЕРА TM
+    ===================================== */
 
     if (!tmPhone) {
 
-      topupMessage.textContent =
-        "Введите номер для пополнения.";
-
-      topupMessage.className =
-        "topup-message error";
+      showTopupError(
+        "Введите номер для пополнения."
+      );
 
       tmPhoneInput.focus();
 
@@ -2174,15 +2206,15 @@ topupSubmit.addEventListener(
 
 
 
-    /* Проверка номера оплаты */
+    /* =====================================
+       ПРОВЕРКА НОМЕРА ОПЛАТЫ
+    ===================================== */
 
     if (!country) {
 
-      topupMessage.textContent =
-        "Введите номер для оплаты с кодом +7 или +90.";
-
-      topupMessage.className =
-        "topup-message error";
+      showTopupError(
+        "Введите номер для оплаты с кодом +7 или +90."
+      );
 
       payerPhoneInput.focus();
 
@@ -2192,18 +2224,18 @@ topupSubmit.addEventListener(
 
 
 
-    /* Проверка суммы */
+    /* =====================================
+       ПРОВЕРКА СУММЫ
+    ===================================== */
 
     if (
       !amount ||
       amount <= 0
     ) {
 
-      topupMessage.textContent =
-        "Введите сумму пополнения в манатах.";
-
-      topupMessage.className =
-        "topup-message error";
+      showTopupError(
+        "Введите сумму пополнения в манатах."
+      );
 
       tmtAmountInput.focus();
 
@@ -2213,19 +2245,227 @@ topupSubmit.addEventListener(
 
 
 
-    /*
-      Пока реальная оплата
-      не подключена.
+    /* =====================================
+       РАСЧЁТ
+    ===================================== */
 
-      Следующим этапом сюда
-      подключим платёжный провайдер.
-    */
+    const paymentTotal =
+      Number(
+        (
+          amount *
+          country.rate
+        ).toFixed(2)
+      );
 
-    topupMessage.textContent =
-      "Форма готова. Реальную оплату подключим следующим этапом.";
 
-    topupMessage.className =
-      "topup-message success";
+
+    /* =====================================
+       БЛОКИРУЕМ КНОПКУ
+    ===================================== */
+
+    topupSubmit.disabled =
+      true;
+
+    topupSubmit.textContent =
+      "Создаём заказ...";
+
+
+
+    try {
+
+      /* ===================================
+         СОЗДАЁМ ЗАКАЗ ЧЕРЕЗ SUPABASE RPC
+
+         Авторизация НЕ требуется.
+
+         Если пользователь вошёл,
+         Supabase сам привяжет user_id.
+      =================================== */
+
+      const result =
+        await supabaseClient.rpc(
+          "create_topup_order",
+          {
+
+            p_tm_phone:
+              tmPhone,
+
+            p_payer_phone:
+              payerPhone,
+
+            p_payer_country:
+              country.code,
+
+            p_currency:
+              country.currency,
+
+            p_exchange_rate:
+              country.rate,
+
+            p_amount_tmt:
+              amount,
+
+            p_payment_amount:
+              paymentTotal
+
+          }
+        );
+
+
+      if (
+        result.error
+      ) {
+
+        console.error(
+          "Ошибка создания заказа:",
+          result.error
+        );
+
+        throw new Error(
+          result.error.message ||
+          "Не удалось создать заказ."
+        );
+
+      }
+
+
+      const rows =
+        result.data;
+
+
+      if (
+        !rows ||
+        !rows.length
+      ) {
+
+        throw new Error(
+          "Supabase не вернул номер заказа."
+        );
+
+      }
+
+
+      const order =
+        rows[0];
+
+
+      const orderId =
+        order.order_id;
+
+      const publicToken =
+        order.public_token;
+
+
+
+      /* ===================================
+         ЗАКАЗ СОЗДАН
+      =================================== */
+
+      showTopupSuccess(
+        "Заказ создан! Номер заказа: " +
+        orderId
+      );
+
+
+      topupSubmit.textContent =
+        "Заказ создан";
+
+
+      /*
+        На этом этапе оплату ещё
+        не запускаем.
+
+        Следующим этапом сюда
+        подключим платёжную систему.
+      */
+
+
+      console.log(
+        "Создан заказ:",
+        {
+          orderId:
+            orderId,
+
+          publicToken:
+            publicToken
+        }
+      );
+
+
+
+      /* ===================================
+         ДОПОЛНИТЕЛЬНО ПОКАЗЫВАЕМ СТАТУС
+      =================================== */
+
+      const existingStatus =
+        document.getElementById(
+          "orderStatus"
+        );
+
+
+      if (
+        existingStatus
+      ) {
+
+        existingStatus.remove();
+
+      }
+
+
+      const statusBox =
+        document.createElement(
+          "div"
+        );
+
+
+      statusBox.id =
+        "orderStatus";
+
+      statusBox.style.marginTop =
+        "14px";
+
+      statusBox.style.padding =
+        "14px";
+
+      statusBox.style.background =
+        "#f7f7f7";
+
+      statusBox.style.borderRadius =
+        "12px";
+
+      statusBox.innerHTML =
+        "<strong>Заказ создан</strong>" +
+        "<br>" +
+        "<span style='font-size:13px;color:#666'>" +
+        "Статус: Ожидает оплаты" +
+        "</span>";
+
+
+      topupMessage.after(
+        statusBox
+      );
+
+
+
+    } catch (error) {
+
+      console.error(
+        error
+      );
+
+
+      showTopupError(
+        "Не удалось создать заказ. Попробуйте ещё раз."
+      );
+
+
+      topupSubmit.disabled =
+        false;
+
+      topupSubmit.textContent =
+        "Создать заказ";
+
+    }
 
   }
 );
@@ -2312,3 +2552,4 @@ checkSession();
 
 </body>
 </html>
+```
