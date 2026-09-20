@@ -149,7 +149,7 @@
         Пополните баланс номера в Туркменистане.
       </p>
 
-      <a href="#">
+      <a href="#" id="mobileTopupOpen">
         Пополнить →
       </a>
 
@@ -260,6 +260,7 @@
     </p>
 
   </div>
+
   <button class="btn" type="button">
     Написать в поддержку
   </button>
@@ -286,7 +287,196 @@
 </footer>
 
 
-<!-- ОКНО АВТОРИЗАЦИИ -->
+
+<!-- =========================================
+     ФОРМА ПОПОЛНЕНИЯ МОБИЛЬНОГО
+========================================= -->
+
+<div id="topupModal" class="topup-modal">
+
+  <div class="topup-box">
+
+    <button
+      id="closeTopup"
+      class="topup-close"
+      type="button"
+    >
+      ×
+    </button>
+
+    <div class="label">
+      ПОПОЛНЕНИЕ МОБИЛЬНОГО
+    </div>
+
+    <h2>
+      Пополнить номер
+    </h2>
+
+    <p class="topup-subtitle">
+      Введите номер в Туркменистане и номер, с которого будет произведена оплата.
+    </p>
+
+
+    <!-- НОМЕР ТУРКМЕНИСТАНА -->
+
+    <div class="topup-field">
+
+      <label for="tmPhoneInput">
+        Номер для пополнения
+      </label>
+
+      <div class="phone-input-wrap">
+
+        <div class="country-badge tm-badge">
+
+          <img
+            src="https://flagcdn.com/w40/tm.png"
+            alt="Туркменистан"
+            class="country-flag"
+          >
+
+        </div>
+
+        <input
+          id="tmPhoneInput"
+          type="tel"
+          inputmode="tel"
+          placeholder="+993 XX XX XX XX"
+          autocomplete="tel"
+        >
+
+      </div>
+
+      <div class="phone-hint">
+        Номер мобильного телефона в Туркменистане
+      </div>
+
+    </div>
+
+
+    <!-- НОМЕР ДЛЯ ОПЛАТЫ -->
+
+    <div class="topup-field">
+
+      <label for="payerPhoneInput">
+        Номер для оплаты
+      </label>
+
+      <div class="phone-input-wrap">
+
+        <div
+          id="payerCountry"
+          class="country-badge payer-badge"
+        >
+
+          <img
+            id="payerFlag"
+            src="https://flagcdn.com/w40/un.png"
+            alt="Страна"
+            class="country-flag"
+          >
+
+        </div>
+
+        <input
+          id="payerPhoneInput"
+          type="tel"
+          inputmode="tel"
+          placeholder="+7 или +90"
+          autocomplete="tel"
+        >
+
+      </div>
+
+      <div
+        id="payerHint"
+        class="phone-hint"
+      >
+        +7 — Россия · +90 — Турция
+      </div>
+
+    </div>
+
+
+    <!-- СУММА -->
+
+    <div class="topup-field">
+
+      <label for="tmtAmountInput">
+        Сумма пополнения
+      </label>
+
+      <div class="amount-input-wrap">
+
+        <input
+          id="tmtAmountInput"
+          type="number"
+          min="1"
+          step="1"
+          placeholder="20"
+        >
+
+        <span>
+          TMT
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- РАСЧЁТ -->
+
+    <div
+      id="paymentSummary"
+      class="payment-summary hidden"
+    >
+
+      <div class="summary-row">
+
+        <span>
+          К оплате
+        </span>
+
+        <strong id="paymentAmount">
+          —
+        </strong>
+
+      </div>
+
+      <div
+        id="receivedText"
+        class="received-text"
+      >
+        0 TMT поступит на номер
+      </div>
+
+    </div>
+
+
+    <div
+      id="topupMessage"
+      class="topup-message"
+    ></div>
+
+
+    <button
+      id="topupSubmit"
+      class="btn topup-submit"
+      type="button"
+    >
+      Пополнить
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================
+     ОКНО АВТОРИЗАЦИИ
+========================================= -->
 
 <div id="authModal" class="auth-modal">
 
@@ -305,7 +495,10 @@
     </h2>
 
 
-    <div id="phoneField" class="auth-field hidden">
+    <div
+      id="phoneField"
+      class="auth-field hidden"
+    >
 
       <label for="phoneInput">
         Номер телефона
@@ -385,109 +578,621 @@
 </div>
 
 
+
 <style>
 
-/* Окно авторизации */
+/* =========================================
+   ПОПОЛНЕНИЕ МОБИЛЬНОГО
+========================================= */
+
+.topup-modal {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+}
+
+.topup-modal.active {
+
+  display: flex;
+
+}
+
+
+.topup-box {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 480px;
+
+  max-height: calc(100vh - 40px);
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.22);
+
+}
+
+
+.topup-box h2 {
+
+  margin:
+    7px
+    0
+    8px;
+
+}
+
+
+.topup-subtitle {
+
+  margin:
+    0
+    0
+    24px;
+
+  color: #666;
+
+  line-height: 1.5;
+
+  font-size: 14px;
+
+}
+
+
+.topup-close {
+
+  position: absolute;
+
+  top: 10px;
+
+  right: 15px;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  color: #555;
+
+}
+
+
+.topup-field {
+
+  margin-bottom: 18px;
+
+}
+
+
+.topup-field label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+
+}
+
+
+.phone-input-wrap,
+.amount-input-wrap {
+
+  display: flex;
+
+  align-items: stretch;
+
+  width: 100%;
+
+}
+
+
+.phone-input-wrap input,
+.amount-input-wrap input {
+
+  min-width: 0;
+
+  flex: 1;
+
+  box-sizing: border-box;
+
+  padding: 14px;
+
+  border: 1px solid #d9d9d9;
+
+  border-left: none;
+
+  border-radius:
+    0
+    10px
+    10px
+    0;
+
+  font-size: 16px;
+
+  outline: none;
+
+}
+
+
+.phone-input-wrap input:focus,
+.amount-input-wrap input:focus {
+
+  border-color: #222;
+
+}
+
+
+.country-flag {
+
+  width: 28px;
+
+  height: 20px;
+
+  object-fit: cover;
+
+  border-radius: 3px;
+
+  display: block;
+
+}
+
+
+.country-badge {
+
+  min-width: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+
+  background: #f5f5f5;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius:
+    10px
+    0
+    0
+    10px;
+
+  font-size: 15px;
+
+}
+
+
+.phone-hint {
+
+  margin-top: 7px;
+
+  font-size: 12px;
+
+  color: #777;
+
+}
+
+
+.amount-input-wrap input {
+
+  border:
+    1px
+    solid
+    #d9d9d9;
+
+  border-right: none;
+
+  border-radius:
+    10px
+    0
+    0
+    10px;
+
+}
+
+
+.amount-input-wrap span {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 64px;
+
+  padding: 0 12px;
+
+  background: #f5f5f5;
+
+  border:
+    1px
+    solid
+    #d9d9d9;
+
+  border-left: none;
+
+  border-radius:
+    0
+    10px
+    10px
+    0;
+
+  font-weight: 700;
+
+}
+
+
+.payment-summary {
+
+  margin-top: 8px;
+
+  margin-bottom: 16px;
+
+  padding: 17px;
+
+  background: #f7f7f7;
+
+  border-radius: 14px;
+
+}
+
+
+.payment-summary.hidden {
+
+  display: none;
+
+}
+
+
+.summary-row {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+}
+
+
+.summary-row span {
+
+  color: #666;
+
+}
+
+
+.summary-row strong {
+
+  font-size: 22px;
+
+}
+
+
+.received-text {
+
+  margin-top: 9px;
+
+  font-size: 13px;
+
+  color: #666;
+
+}
+
+
+.topup-message {
+
+  min-height: 20px;
+
+  margin:
+    0
+    0
+    10px;
+
+  font-size: 14px;
+
+}
+
+
+.topup-message.error {
+
+  color: #c62828;
+
+}
+
+
+.topup-message.success {
+
+  color: #2e7d32;
+
+}
+
+
+.topup-submit {
+
+  width: 100%;
+
+  border: none;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================================
+   ОКНО АВТОРИЗАЦИИ
+========================================= */
 
 .auth-modal {
+
   display: none;
+
   position: fixed;
+
   inset: 0;
+
   z-index: 9999;
+
   background: rgba(0, 0, 0, 0.55);
+
   align-items: center;
+
   justify-content: center;
+
   padding: 20px;
+
 }
+
 
 .auth-modal.active {
+
   display: flex;
+
 }
+
 
 .auth-box {
+
   position: relative;
+
   width: 100%;
+
   max-width: 420px;
+
   background: #ffffff;
+
   border-radius: 20px;
+
   padding: 30px;
+
   box-sizing: border-box;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+  box-shadow:
+    0
+    20px
+    60px
+    rgba(0, 0, 0, 0.2);
+
 }
+
 
 .auth-box h2 {
+
   margin-top: 0;
+
   margin-bottom: 25px;
+
 }
+
 
 .auth-close {
+
   position: absolute;
+
   top: 12px;
+
   right: 16px;
+
   border: none;
+
   background: transparent;
+
   font-size: 30px;
+
   cursor: pointer;
+
 }
+
 
 .auth-field {
+
   margin-bottom: 16px;
+
 }
+
 
 .auth-field label {
+
   display: block;
+
   margin-bottom: 7px;
+
   font-weight: 600;
+
 }
+
 
 .auth-field input {
+
   width: 100%;
+
   box-sizing: border-box;
+
   padding: 13px;
-  border: 1px solid #d9d9d9;
+
+  border:
+    1px
+    solid
+    #d9d9d9;
+
   border-radius: 9px;
+
   font-size: 16px;
+
 }
+
 
 .hidden {
+
   display: none;
+
 }
+
 
 .auth-submit {
+
   width: 100%;
+
   border: none;
+
   cursor: pointer;
+
   margin-top: 5px;
+
 }
+
 
 .auth-message {
+
   min-height: 20px;
+
   margin-bottom: 10px;
+
   font-size: 14px;
+
 }
+
 
 .auth-message.error {
+
   color: #c62828;
+
 }
+
 
 .auth-message.success {
+
   color: #2e7d32;
+
 }
+
 
 .auth-switch {
+
   text-align: center;
+
   margin-top: 18px;
+
   font-size: 14px;
+
 }
 
+
 .auth-switch button {
+
   border: none;
+
   background: transparent;
+
   cursor: pointer;
+
   font-weight: 700;
+
+}
+
+
+/* =========================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================================= */
+
+@media (max-width: 600px) {
+
+  .topup-box {
+
+    padding:
+      25px
+      18px;
+
+    border-radius: 18px;
+
+  }
+
+  .country-badge {
+
+    min-width: 62px;
+
+  }
+
+  .country-flag {
+
+    width: 26px;
+
+    height: 18px;
+
+  }
+
+  .summary-row strong {
+
+    font-size: 19px;
+
+  }
+
 }
 
 </style>
+
 
 
 <script>
@@ -509,8 +1214,9 @@ const supabaseClient =
   );
 
 
+
 /* =========================================
-   ЭЛЕМЕНТЫ
+   ЭЛЕМЕНТЫ АВТОРИЗАЦИИ
 ========================================= */
 
 const authModal =
@@ -538,7 +1244,7 @@ const passwordInput =
   document.getElementById("passwordInput");
 
 const switchQuestion =
-        document.getElementById("switchQuestion");
+  document.getElementById("switchQuestion");
 
 const switchAuth =
   document.getElementById("switchAuth");
@@ -556,6 +1262,7 @@ const closeAuth =
 let authMode = "login";
 
 
+
 /* =========================================
    ОТКРЫТЬ АВТОРИЗАЦИЮ
 ========================================= */
@@ -569,7 +1276,9 @@ function openAuth(mode) {
   clearMessage();
 
   emailInput.value = "";
+
   passwordInput.value = "";
+
   phoneInput.value = "";
 
   updateAuthMode();
@@ -577,8 +1286,9 @@ function openAuth(mode) {
 }
 
 
+
 /* =========================================
-   ЗАКРЫТЬ
+   ЗАКРЫТЬ АВТОРИЗАЦИЮ
 ========================================= */
 
 function closeAuthWindow() {
@@ -590,6 +1300,7 @@ function closeAuthWindow() {
 }
 
 
+
 /* =========================================
    РЕЖИМ LOGIN / REGISTER
 ========================================= */
@@ -598,11 +1309,15 @@ function updateAuthMode() {
 
   if (authMode === "login") {
 
-    authTitle.textContent = "Войти";
+    authTitle.textContent =
+      "Войти";
 
-    authSubmit.textContent = "Войти";
+    authSubmit.textContent =
+      "Войти";
 
-    phoneField.classList.add("hidden");
+    phoneField.classList.add(
+      "hidden"
+    );
 
     switchQuestion.textContent =
       "Нет аккаунта?";
@@ -618,7 +1333,9 @@ function updateAuthMode() {
     authSubmit.textContent =
       "Зарегистрироваться";
 
-    phoneField.classList.remove("hidden");
+    phoneField.classList.remove(
+      "hidden"
+    );
 
     switchQuestion.textContent =
       "Уже есть аккаунт?";
@@ -631,13 +1348,15 @@ function updateAuthMode() {
 }
 
 
+
 /* =========================================
    СООБЩЕНИЯ
 ========================================= */
 
 function showError(message) {
 
-  authMessage.textContent = message;
+  authMessage.textContent =
+    message;
 
   authMessage.className =
     "auth-message error";
@@ -647,7 +1366,8 @@ function showError(message) {
 
 function showSuccess(message) {
 
-  authMessage.textContent = message;
+  authMessage.textContent =
+    message;
 
   authMessage.className =
     "auth-message success";
@@ -657,7 +1377,8 @@ function showSuccess(message) {
 
 function clearMessage() {
 
-  authMessage.textContent = "";
+  authMessage.textContent =
+    "";
 
   authMessage.className =
     "auth-message";
@@ -665,8 +1386,9 @@ function clearMessage() {
 }
 
 
+
 /* =========================================
-   КНОПКИ
+   КНОПКИ АВТОРИЗАЦИИ
 ========================================= */
 
 loginBtn.addEventListener(
@@ -717,15 +1439,18 @@ switchAuth.addEventListener(
 );
 
 
+
 /* =========================================
-   ЗАКРЫТЬ ПО ФОНУ
+   ЗАКРЫТЬ АВТОРИЗАЦИЮ ПО ФОНУ
 ========================================= */
 
 authModal.addEventListener(
   "click",
   function (event) {
 
-    if (event.target === authModal) {
+    if (
+      event.target === authModal
+    ) {
 
       closeAuthWindow();
 
@@ -733,6 +1458,7 @@ authModal.addEventListener(
 
   }
 );
+
 
 
 /* =========================================
@@ -757,7 +1483,9 @@ authSubmit.addEventListener(
 
     if (!email) {
 
-      showError("Введите email.");
+      showError(
+        "Введите email."
+      );
 
       return;
 
@@ -766,7 +1494,9 @@ authSubmit.addEventListener(
 
     if (!password) {
 
-      showError("Введите пароль.");
+      showError(
+        "Введите пароль."
+      );
 
       return;
 
@@ -782,6 +1512,7 @@ authSubmit.addEventListener(
       return;
 
     }
+
 
 
     /* =====================================
@@ -816,7 +1547,7 @@ authSubmit.addEventListener(
 
             emailRedirectTo:
               window.location.origin +
-                    window.location.pathname
+              window.location.pathname
 
           }
 
@@ -834,15 +1565,19 @@ authSubmit.addEventListener(
       }
 
 
-      if (result.data.session) {
+      if (
+        result.data.session
+      ) {
 
         await supabaseClient
           .from("profiles")
           .upsert({
 
-            id: result.data.user.id,
+            id:
+              result.data.user.id,
 
-            phone: phone
+            phone:
+              phone
 
           });
 
@@ -875,6 +1610,7 @@ authSubmit.addEventListener(
     }
 
 
+
     /* =====================================
        ВХОД
     ===================================== */
@@ -882,9 +1618,11 @@ authSubmit.addEventListener(
     const result =
       await supabaseClient.auth.signInWithPassword({
 
-        email: email,
+        email:
+          email,
 
-        password: password
+        password:
+          password
 
       });
 
@@ -901,13 +1639,16 @@ authSubmit.addEventListener(
     }
 
 
-    if (result.data.user) {
+    if (
+      result.data.user
+    ) {
 
       await supabaseClient
         .from("profiles")
         .upsert({
 
-          id: result.data.user.id,
+          id:
+            result.data.user.id,
 
           phone:
             result.data.user.user_metadata?.phone ||
@@ -937,6 +1678,560 @@ authSubmit.addEventListener(
 );
 
 
+
+/* =========================================
+   ПОПОЛНЕНИЕ МОБИЛЬНОГО
+========================================= */
+
+
+/*
+  КУРСЫ ПОКА ЗАДАЮТСЯ ВРУЧНУЮ.
+
+  Здесь:
+
+  1 TMT = 57.50 RUB
+
+  1 TMT = 16.20 TRY
+
+  Позже подключим автоматическое
+  получение курса.
+*/
+
+const MANUAL_RATES = {
+
+  RUB_PER_TMT:
+    57.50,
+
+  TRY_PER_TMT:
+    16.20
+
+};
+
+
+
+/* =========================================
+   ЭЛЕМЕНТЫ ПОПОЛНЕНИЯ
+========================================= */
+
+const topupModal =
+  document.getElementById(
+    "topupModal"
+  );
+
+const mobileTopupOpen =
+  document.getElementById(
+    "mobileTopupOpen"
+  );
+
+const closeTopup =
+  document.getElementById(
+    "closeTopup"
+  );
+
+
+const tmPhoneInput =
+  document.getElementById(
+    "tmPhoneInput"
+  );
+
+const payerPhoneInput =
+  document.getElementById(
+    "payerPhoneInput"
+  );
+
+const tmtAmountInput =
+  document.getElementById(
+    "tmtAmountInput"
+  );
+
+
+const payerHint =
+  document.getElementById(
+    "payerHint"
+  );
+
+const payerFlag =
+  document.getElementById(
+    "payerFlag"
+  );
+
+
+const paymentSummary =
+  document.getElementById(
+    "paymentSummary"
+  );
+
+const paymentAmount =
+  document.getElementById(
+    "paymentAmount"
+  );
+
+const receivedText =
+  document.getElementById(
+    "receivedText"
+  );
+
+
+const topupMessage =
+  document.getElementById(
+    "topupMessage"
+  );
+
+const topupSubmit =
+  document.getElementById(
+    "topupSubmit"
+  );
+
+
+
+/* =========================================
+   ОТКРЫТЬ ПОПОЛНЕНИЕ
+========================================= */
+
+function openTopup() {
+
+  topupModal.classList.add(
+    "active"
+  );
+
+  topupMessage.textContent =
+    "";
+
+  topupMessage.className =
+    "topup-message";
+
+  updatePaymentCalculation();
+
+}
+
+
+
+/* =========================================
+   ЗАКРЫТЬ ПОПОЛНЕНИЕ
+========================================= */
+
+function closeTopupWindow() {
+
+  topupModal.classList.remove(
+    "active"
+  );
+
+}
+
+
+
+/* =========================================
+   ОПРЕДЕЛЕНИЕ СТРАНЫ
+========================================= */
+
+function detectPayerCountry(
+  phone
+) {
+
+  const normalized =
+    phone.replace(
+      /[^\d+]/g,
+      ""
+    );
+
+  const digits =
+    normalized.replace(
+      /\D/g,
+      ""
+    );
+
+
+  /* РОССИЯ */
+
+  if (
+    digits.startsWith("7")
+  ) {
+
+    return {
+
+      code:
+        "RU",
+
+      flag:
+        "https://flagcdn.com/w40/ru.png",
+
+      name:
+        "Россия",
+
+      currency:
+        "RUB",
+
+      symbol:
+        "₽",
+
+      rate:
+        MANUAL_RATES.RUB_PER_TMT
+
+    };
+
+  }
+
+
+  /* ТУРЦИЯ */
+
+  if (
+    digits.startsWith("90")
+  ) {
+
+    return {
+
+      code:
+        "TR",
+
+      flag:
+        "https://flagcdn.com/w40/tr.png",
+
+      name:
+        "Турция",
+
+      currency:
+        "TRY",
+
+      symbol:
+        "₺",
+
+      rate:
+        MANUAL_RATES.TRY_PER_TMT
+
+    };
+
+  }
+
+
+  return null;
+
+}
+
+
+
+/* =========================================
+   ФОРМАТ ДЕНЕГ
+========================================= */
+
+function formatMoney(
+  value
+) {
+
+  return Number(
+    value
+  ).toLocaleString(
+    "ru-RU",
+    {
+
+      minimumFractionDigits:
+        2,
+
+      maximumFractionDigits:
+        2
+
+    }
+  );
+
+}
+
+
+
+/* =========================================
+   РАСЧЁТ ОПЛАТЫ
+========================================= */
+
+function updatePaymentCalculation() {
+
+  const country =
+    detectPayerCountry(
+      payerPhoneInput.value
+    );
+
+  const amount =
+    Number(
+      tmtAmountInput.value
+    );
+
+
+  /* Если страна ещё не определена */
+
+  if (!country) {
+
+    payerFlag.src =
+      "https://flagcdn.com/w40/un.png";
+
+    payerFlag.alt =
+      "Страна";
+
+
+    payerHint.textContent =
+      payerPhoneInput.value
+
+        ? "Поддерживаются номера +7 (Россия) и +90 (Турция)"
+
+        : "+7 — Россия · +90 — Турция";
+
+
+    paymentSummary.classList.add(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+
+  /* Показываем настоящий флаг */
+
+  payerFlag.src =
+    country.flag;
+
+  payerFlag.alt =
+    country.name;
+
+
+
+  /* Подсказка */
+
+  if (
+    country.code === "RU"
+  ) {
+
+    payerHint.textContent =
+      "Россия · оплата в рублях";
+
+  } else {
+
+    payerHint.textContent =
+      "Турция · оплата в лирах";
+
+  }
+
+
+
+  /* Если сумма не введена */
+
+  if (
+    !amount ||
+    amount <= 0
+  ) {
+
+    paymentSummary.classList.add(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+
+  /* Расчёт */
+
+  const total =
+    amount *
+    country.rate;
+
+
+  paymentAmount.textContent =
+    formatMoney(total) +
+    " " +
+    country.symbol;
+
+
+  receivedText.textContent =
+    formatMoney(amount)
+      .replace(
+        ",00",
+        ""
+      ) +
+    " TMT поступит на номер";
+
+
+  paymentSummary.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+
+/* =========================================
+   КНОПКА ПОПОЛНЕНИЯ
+========================================= */
+
+if (
+  mobileTopupOpen
+) {
+
+  mobileTopupOpen.addEventListener(
+    "click",
+    function (event) {
+
+      event.preventDefault();
+
+      openTopup();
+
+    }
+  );
+
+}
+
+
+closeTopup.addEventListener(
+  "click",
+  closeTopupWindow
+);
+
+
+
+/* Закрытие по фону */
+
+topupModal.addEventListener(
+  "click",
+  function (event) {
+
+    if (
+      event.target === topupModal
+    ) {
+
+      closeTopupWindow();
+
+    }
+
+  }
+);
+
+
+
+/* =========================================
+   АВТОРАСЧЁТ
+========================================= */
+
+payerPhoneInput.addEventListener(
+  "input",
+  updatePaymentCalculation
+);
+
+
+tmtAmountInput.addEventListener(
+  "input",
+  updatePaymentCalculation
+);
+
+
+
+/* =========================================
+   КНОПКА ПОПОЛНИТЬ
+========================================= */
+
+topupSubmit.addEventListener(
+  "click",
+  async function () {
+
+    topupMessage.textContent =
+      "";
+
+    topupMessage.className =
+      "topup-message";
+
+
+    const tmPhone =
+      tmPhoneInput.value.trim();
+
+    const payerPhone =
+      payerPhoneInput.value.trim();
+
+    const amount =
+      Number(
+        tmtAmountInput.value
+      );
+
+
+    const country =
+      detectPayerCountry(
+        payerPhone
+      );
+
+
+
+    /* Проверка номера TM */
+
+    if (!tmPhone) {
+
+      topupMessage.textContent =
+        "Введите номер для пополнения.";
+
+      topupMessage.className =
+        "topup-message error";
+
+      tmPhoneInput.focus();
+
+      return;
+
+    }
+
+
+
+    /* Проверка номера оплаты */
+
+    if (!country) {
+
+      topupMessage.textContent =
+        "Введите номер для оплаты с кодом +7 или +90.";
+
+      topupMessage.className =
+        "topup-message error";
+
+      payerPhoneInput.focus();
+
+      return;
+
+    }
+
+
+
+    /* Проверка суммы */
+
+    if (
+      !amount ||
+      amount <= 0
+    ) {
+
+      topupMessage.textContent =
+        "Введите сумму пополнения в манатах.";
+
+      topupMessage.className =
+        "topup-message error";
+
+      tmtAmountInput.focus();
+
+      return;
+
+    }
+
+
+
+    /*
+      Пока реальная оплата
+      не подключена.
+
+      Следующим этапом сюда
+      подключим платёжный провайдер.
+    */
+
+    topupMessage.textContent =
+      "Форма готова. Реальную оплату подключим следующим этапом.";
+
+    topupMessage.className =
+      "topup-message success";
+
+  }
+);
+
+
+
 /* =========================================
    ПРОВЕРКА СЕССИИ
 ========================================= */
@@ -945,6 +2240,7 @@ async function checkSession() {
 
   const result =
     await supabaseClient.auth.getSession();
+
 
   const session =
     result.data.session;
@@ -955,6 +2251,7 @@ async function checkSession() {
     loginBtn.textContent =
       "Личный кабинет";
 
+
     loginBtn.onclick =
       function () {
 
@@ -963,10 +2260,48 @@ async function checkSession() {
 
       };
 
+
     registerBtn.style.display =
       "none";
 
   }
+
+}
+
+
+
+/* =========================================
+   ЕСЛИ ПРИШЛИ С ACCOUNT.HTML
+========================================= */
+
+if (
+  window.location.hash ===
+  "#services"
+) {
+
+  setTimeout(
+    function () {
+
+      const serviceSection =
+        document.getElementById(
+          "services"
+        );
+
+
+      if (
+        serviceSection
+      ) {
+
+        serviceSection.scrollIntoView({
+          behavior:
+            "smooth"
+        });
+
+      }
+
+    },
+    200
+  );
 
 }
 
