@@ -320,8 +320,6 @@
     </p>
 
 
-    <!-- НОМЕР ТУРКМЕНИСТАНА -->
-
     <div class="topup-field">
 
       <label for="tmPhoneInput">
@@ -356,8 +354,6 @@
 
     </div>
 
-
-    <!-- НОМЕР ДЛЯ ОПЛАТЫ -->
 
     <div class="topup-field">
 
@@ -401,8 +397,6 @@
     </div>
 
 
-    <!-- СУММА -->
-
     <div class="topup-field">
 
       <label for="tmtAmountInput">
@@ -427,8 +421,6 @@
 
     </div>
 
-
-    <!-- РАСЧЁТ -->
 
     <div
       id="paymentSummary"
@@ -584,621 +576,314 @@
 
 <style>
 
-/* =========================================
-   ПОПОЛНЕНИЕ МОБИЛЬНОГО
-========================================= */
-
 .topup-modal {
-
   display: none;
-
   position: fixed;
-
   inset: 0;
-
   z-index: 10000;
-
   background: rgba(0, 0, 0, 0.55);
-
   align-items: center;
-
   justify-content: center;
-
   padding: 20px;
-
   box-sizing: border-box;
-
 }
 
 .topup-modal.active {
-
   display: flex;
-
 }
-
 
 .topup-box {
-
   position: relative;
-
   width: 100%;
-
   max-width: 480px;
-
   max-height: calc(100vh - 40px);
-
   overflow-y: auto;
-
   background: #ffffff;
-
   border-radius: 22px;
-
   padding: 30px;
-
   box-sizing: border-box;
-
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.22);
-
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
 }
-
 
 .topup-box h2 {
-
-  margin:
-    7px
-    0
-    8px;
-
+  margin: 7px 0 8px;
 }
-
 
 .topup-subtitle {
-
-  margin:
-    0
-    0
-    24px;
-
+  margin: 0 0 24px;
   color: #666;
-
   line-height: 1.5;
-
   font-size: 14px;
-
 }
-
 
 .topup-close {
-
   position: absolute;
-
   top: 10px;
-
   right: 15px;
-
   border: none;
-
   background: transparent;
-
   font-size: 30px;
-
   line-height: 1;
-
   cursor: pointer;
-
   color: #555;
-
 }
-
 
 .topup-field {
-
   margin-bottom: 18px;
-
 }
-
 
 .topup-field label {
-
   display: block;
-
   margin-bottom: 8px;
-
   font-weight: 600;
-
 }
-
 
 .phone-input-wrap,
 .amount-input-wrap {
-
   display: flex;
-
   align-items: stretch;
-
   width: 100%;
-
 }
-
 
 .phone-input-wrap input,
 .amount-input-wrap input {
-
   min-width: 0;
-
   flex: 1;
-
   box-sizing: border-box;
-
   padding: 14px;
-
   border: 1px solid #d9d9d9;
-
   border-left: none;
-
-  border-radius:
-    0
-    10px
-    10px
-    0;
-
+  border-radius: 0 10px 10px 0;
   font-size: 16px;
-
   outline: none;
-
 }
-
 
 .phone-input-wrap input:focus,
 .amount-input-wrap input:focus {
-
   border-color: #222;
-
 }
-
 
 .country-flag {
-
   width: 28px;
-
   height: 20px;
-
   object-fit: cover;
-
   border-radius: 3px;
-
   display: block;
-
 }
-
 
 .country-badge {
-
   min-width: 72px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 7px;
-
   padding: 0 12px;
-
   box-sizing: border-box;
-
   background: #f5f5f5;
-
   border: 1px solid #d9d9d9;
-
-  border-radius:
-    10px
-    0
-    0
-    10px;
-
+  border-radius: 10px 0 0 10px;
   font-size: 15px;
-
 }
-
 
 .phone-hint {
-
   margin-top: 7px;
-
   font-size: 12px;
-
   color: #777;
-
 }
-
 
 .amount-input-wrap input {
-
-  border:
-    1px
-    solid
-    #d9d9d9;
-
+  border: 1px solid #d9d9d9;
   border-right: none;
-
-  border-radius:
-    10px
-    0
-    0
-    10px;
-
+  border-radius: 10px 0 0 10px;
 }
-
 
 .amount-input-wrap span {
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   min-width: 64px;
-
   padding: 0 12px;
-
   background: #f5f5f5;
-
-  border:
-    1px
-    solid
-    #d9d9d9;
-
+  border: 1px solid #d9d9d9;
   border-left: none;
-
-  border-radius:
-    0
-    10px
-    10px
-    0;
-
+  border-radius: 0 10px 10px 0;
   font-weight: 700;
-
 }
-
 
 .payment-summary {
-
   margin-top: 8px;
-
   margin-bottom: 16px;
-
   padding: 17px;
-
   background: #f7f7f7;
-
   border-radius: 14px;
-
 }
-
 
 .payment-summary.hidden {
-
   display: none;
-
 }
-
 
 .summary-row {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 15px;
-
 }
-
 
 .summary-row span {
-
   color: #666;
-
 }
-
 
 .summary-row strong {
-
   font-size: 22px;
-
 }
-
 
 .received-text {
-
   margin-top: 9px;
-
   font-size: 13px;
-
   color: #666;
-
 }
-
 
 .topup-message {
-
   min-height: 20px;
-
-  margin:
-    0
-    0
-    10px;
-
+  margin: 0 0 10px;
   font-size: 14px;
-
 }
-
 
 .topup-message.error {
-
   color: #c62828;
-
 }
-
 
 .topup-message.success {
-
   color: #2e7d32;
-
 }
-
 
 .topup-submit {
-
   width: 100%;
-
   border: none;
-
   cursor: pointer;
-
 }
-
 
 .topup-submit:disabled {
-
   opacity: 0.65;
-
   cursor: wait;
-
 }
-
-
-/* =========================================
-   ОКНО АВТОРИЗАЦИИ
-========================================= */
 
 .auth-modal {
-
   display: none;
-
   position: fixed;
-
   inset: 0;
-
   z-index: 9999;
-
   background: rgba(0, 0, 0, 0.55);
-
   align-items: center;
-
   justify-content: center;
-
   padding: 20px;
-
 }
-
 
 .auth-modal.active {
-
   display: flex;
-
 }
-
 
 .auth-box {
-
   position: relative;
-
   width: 100%;
-
   max-width: 420px;
-
   background: #ffffff;
-
   border-radius: 20px;
-
   padding: 30px;
-
   box-sizing: border-box;
-
-  box-shadow:
-    0
-    20px
-    60px
-    rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
-
 
 .auth-box h2 {
-
   margin-top: 0;
-
   margin-bottom: 25px;
-
 }
-
 
 .auth-close {
-
   position: absolute;
-
   top: 12px;
-
   right: 16px;
-
   border: none;
-
   background: transparent;
-
   font-size: 30px;
-
   cursor: pointer;
-
 }
-
 
 .auth-field {
-
   margin-bottom: 16px;
-
 }
-
 
 .auth-field label {
-
   display: block;
-
   margin-bottom: 7px;
-
   font-weight: 600;
-
 }
-
 
 .auth-field input {
-
   width: 100%;
-
   box-sizing: border-box;
-
   padding: 13px;
-
-  border:
-    1px
-    solid
-    #d9d9d9;
-
+  border: 1px solid #d9d9d9;
   border-radius: 9px;
-
   font-size: 16px;
-
 }
-
 
 .hidden {
-
   display: none;
-
 }
-
 
 .auth-submit {
-
   width: 100%;
-
   border: none;
-
   cursor: pointer;
-
   margin-top: 5px;
-
 }
-
 
 .auth-message {
-
   min-height: 20px;
-
   margin-bottom: 10px;
-
   font-size: 14px;
-
 }
-
 
 .auth-message.error {
-
   color: #c62828;
-
 }
-
 
 .auth-message.success {
-
   color: #2e7d32;
-
 }
-
 
 .auth-switch {
-
   text-align: center;
-
   margin-top: 18px;
-
   font-size: 14px;
-
 }
-
 
 .auth-switch button {
-
   border: none;
-
   background: transparent;
-
   cursor: pointer;
-
   font-weight: 700;
-
 }
-
-
-/* =========================================
-   МОБИЛЬНАЯ ВЕРСИЯ
-========================================= */
 
 @media (max-width: 600px) {
 
   .topup-box {
-
-    padding:
-      25px
-      18px;
-
+    padding: 25px 18px;
     border-radius: 18px;
-
   }
 
   .country-badge {
-
     min-width: 62px;
-
   }
 
   .country-flag {
-
     width: 26px;
-
     height: 18px;
-
   }
 
   .summary-row strong {
-
     font-size: 19px;
-
   }
 
 }
@@ -1274,11 +959,6 @@ const closeAuth =
 let authMode = "login";
 
 
-
-/* =========================================
-   ОТКРЫТЬ АВТОРИЗАЦИЮ
-========================================= */
-
 function openAuth(mode) {
 
   authMode = mode;
@@ -1288,20 +968,13 @@ function openAuth(mode) {
   clearMessage();
 
   emailInput.value = "";
-
   passwordInput.value = "";
-
   phoneInput.value = "";
 
   updateAuthMode();
 
 }
 
-
-
-/* =========================================
-   ЗАКРЫТЬ АВТОРИЗАЦИЮ
-========================================= */
 
 function closeAuthWindow() {
 
@@ -1312,103 +985,61 @@ function closeAuthWindow() {
 }
 
 
-
-/* =========================================
-   РЕЖИМ LOGIN / REGISTER
-========================================= */
-
 function updateAuthMode() {
 
   if (authMode === "login") {
 
-    authTitle.textContent =
-      "Войти";
+    authTitle.textContent = "Войти";
+    authSubmit.textContent = "Войти";
 
-    authSubmit.textContent =
-      "Войти";
+    phoneField.classList.add("hidden");
 
-    phoneField.classList.add(
-      "hidden"
-    );
-
-    switchQuestion.textContent =
-      "Нет аккаунта?";
-
-    switchAuth.textContent =
-      "Регистрация";
+    switchQuestion.textContent = "Нет аккаунта?";
+    switchAuth.textContent = "Регистрация";
 
   } else {
 
-    authTitle.textContent =
-      "Создать аккаунт";
+    authTitle.textContent = "Создать аккаунт";
+    authSubmit.textContent = "Зарегистрироваться";
 
-    authSubmit.textContent =
-      "Зарегистрироваться";
+    phoneField.classList.remove("hidden");
 
-    phoneField.classList.remove(
-      "hidden"
-    );
-
-    switchQuestion.textContent =
-      "Уже есть аккаунт?";
-
-    switchAuth.textContent =
-      "Войти";
+    switchQuestion.textContent = "Уже есть аккаунт?";
+    switchAuth.textContent = "Войти";
 
   }
 
 }
 
 
-
-/* =========================================
-   СООБЩЕНИЯ
-========================================= */
-
 function showError(message) {
 
-  authMessage.textContent =
-    message;
-
-  authMessage.className =
-    "auth-message error";
+  authMessage.textContent = message;
+  authMessage.className = "auth-message error";
 
 }
 
 
 function showSuccess(message) {
 
-  authMessage.textContent =
-    message;
-
-  authMessage.className =
-    "auth-message success";
+  authMessage.textContent = message;
+  authMessage.className = "auth-message success";
 
 }
 
 
 function clearMessage() {
 
-  authMessage.textContent =
-    "";
-
-  authMessage.className =
-    "auth-message";
+  authMessage.textContent = "";
+  authMessage.className = "auth-message";
 
 }
 
 
-
-/* =========================================
-   КНОПКИ АВТОРИЗАЦИИ
-========================================= */
-
 loginBtn.addEventListener(
   "click",
   function () {
-
     openAuth("login");
-
   }
 );
 
@@ -1416,9 +1047,7 @@ loginBtn.addEventListener(
 registerBtn.addEventListener(
   "click",
   function () {
-
     openAuth("register");
-
   }
 );
 
@@ -1434,43 +1063,28 @@ switchAuth.addEventListener(
   function () {
 
     if (authMode === "login") {
-
       authMode = "register";
-
     } else {
-
       authMode = "login";
-
     }
 
     clearMessage();
-
     updateAuthMode();
 
   }
 );
 
 
-
-/* =========================================
-   ЗАКРЫТЬ АВТОРИЗАЦИЮ ПО ФОНУ
-========================================= */
-
 authModal.addEventListener(
   "click",
   function (event) {
 
-    if (
-      event.target === authModal
-    ) {
-
+    if (event.target === authModal) {
       closeAuthWindow();
-
     }
 
   }
 );
-
 
 
 /* =========================================
@@ -1494,53 +1108,30 @@ authSubmit.addEventListener(
 
 
     if (!email) {
-
-      showError(
-        "Введите email."
-      );
-
+      showError("Введите email.");
       return;
-
     }
 
 
     if (!password) {
-
-      showError(
-        "Введите пароль."
-      );
-
+      showError("Введите пароль.");
       return;
-
     }
 
 
     if (password.length < 6) {
-
       showError(
         "Пароль должен содержать минимум 6 символов."
       );
-
       return;
-
     }
 
-
-
-    /* =====================================
-       РЕГИСТРАЦИЯ
-    ===================================== */
 
     if (authMode === "register") {
 
       if (!phone) {
-
-        showError(
-          "Введите номер телефона."
-        );
-
+        showError("Введите номер телефона.");
         return;
-
       }
 
 
@@ -1567,19 +1158,12 @@ authSubmit.addEventListener(
 
 
       if (result.error) {
-
-        showError(
-          result.error.message
-        );
-
+        showError(result.error.message);
         return;
-
       }
 
 
-      if (
-        result.data.session
-      ) {
+      if (result.data.session) {
 
         await supabaseClient
           .from("profiles")
@@ -1594,9 +1178,7 @@ authSubmit.addEventListener(
           });
 
 
-        showSuccess(
-          "Аккаунт создан!"
-        );
+        showSuccess("Аккаунт создан!");
 
 
         setTimeout(
@@ -1622,11 +1204,6 @@ authSubmit.addEventListener(
     }
 
 
-
-    /* =====================================
-       ВХОД
-    ===================================== */
-
     const result =
       await supabaseClient.auth.signInWithPassword({
 
@@ -1651,9 +1228,7 @@ authSubmit.addEventListener(
     }
 
 
-    if (
-      result.data.user
-    ) {
+    if (result.data.user) {
 
       await supabaseClient
         .from("profiles")
@@ -1669,9 +1244,7 @@ authSubmit.addEventListener(
         });
 
 
-      showSuccess(
-        "Вход выполнен!"
-      );
+      showSuccess("Вход выполнен!");
 
 
       setTimeout(
@@ -1712,195 +1285,112 @@ const MANUAL_RATES = {
 ========================================= */
 
 const topupModal =
-  document.getElementById(
-    "topupModal"
-  );
+  document.getElementById("topupModal");
 
 const mobileTopupOpen =
-  document.getElementById(
-    "mobileTopupOpen"
-  );
+  document.getElementById("mobileTopupOpen");
 
 const closeTopup =
-  document.getElementById(
-    "closeTopup"
-  );
-
+  document.getElementById("closeTopup");
 
 const tmPhoneInput =
-  document.getElementById(
-    "tmPhoneInput"
-  );
+  document.getElementById("tmPhoneInput");
 
 const payerPhoneInput =
-  document.getElementById(
-    "payerPhoneInput"
-  );
+  document.getElementById("payerPhoneInput");
 
 const tmtAmountInput =
-  document.getElementById(
-    "tmtAmountInput"
-  );
-
+  document.getElementById("tmtAmountInput");
 
 const payerHint =
-  document.getElementById(
-    "payerHint"
-  );
+  document.getElementById("payerHint");
 
 const payerFlag =
-  document.getElementById(
-    "payerFlag"
-  );
-
+  document.getElementById("payerFlag");
 
 const paymentSummary =
-  document.getElementById(
-    "paymentSummary"
-  );
+  document.getElementById("paymentSummary");
 
 const paymentAmount =
-  document.getElementById(
-    "paymentAmount"
-  );
+  document.getElementById("paymentAmount");
 
 const receivedText =
-  document.getElementById(
-    "receivedText"
-  );
-
+  document.getElementById("receivedText");
 
 const topupMessage =
-  document.getElementById(
-    "topupMessage"
-  );
+  document.getElementById("topupMessage");
 
 const topupSubmit =
-  document.getElementById(
-    "topupSubmit"
-  );
+  document.getElementById("topupSubmit");
 
-
-
-/* =========================================
-   ОТКРЫТЬ ПОПОЛНЕНИЕ
-========================================= */
 
 function openTopup() {
 
-  topupModal.classList.add(
-    "active"
-  );
+  topupModal.classList.add("active");
 
-  topupMessage.textContent =
-    "";
+  topupMessage.textContent = "";
+  topupMessage.className = "topup-message";
 
-  topupMessage.className =
-    "topup-message";
-
-  topupSubmit.disabled =
-    false;
-
-  topupSubmit.textContent =
-    "Создать заказ";
+  topupSubmit.disabled = false;
+  topupSubmit.textContent = "Создать заказ";
 
   updatePaymentCalculation();
 
 }
 
 
-
-/* =========================================
-   ЗАКРЫТЬ ПОПОЛНЕНИЕ
-========================================= */
-
 function closeTopupWindow() {
 
-  topupModal.classList.remove(
-    "active"
-  );
+  topupModal.classList.remove("active");
 
 }
 
 
-
-/* =========================================
-   ОПРЕДЕЛЕНИЕ СТРАНЫ
-========================================= */
-
-function detectPayerCountry(
-  phone
-) {
+function detectPayerCountry(phone) {
 
   const normalized =
-    phone.replace(
-      /[^\d+]/g,
-      ""
-    );
+    phone.replace(/[^\d+]/g, "");
 
   const digits =
-    normalized.replace(
-      /\D/g,
-      ""
-    );
+    normalized.replace(/\D/g, "");
 
 
-  /* РОССИЯ */
-
-  if (
-    digits.startsWith("7")
-  ) {
+  if (digits.startsWith("7")) {
 
     return {
 
-      code:
-        "RU",
+      code: "RU",
 
-      flag:
-        "https://flagcdn.com/w40/ru.png",
+      flag: "https://flagcdn.com/w40/ru.png",
 
-      name:
-        "Россия",
+      name: "Россия",
 
-      currency:
-        "RUB",
+      currency: "RUB",
 
-      symbol:
-        "₽",
+      symbol: "₽",
 
-      rate:
-        MANUAL_RATES.RUB_PER_TMT
+      rate: MANUAL_RATES.RUB_PER_TMT
 
     };
 
   }
 
 
-  /* ТУРЦИЯ */
-
-  if (
-    digits.startsWith("90")
-  ) {
+  if (digits.startsWith("90")) {
 
     return {
 
-      code:
-        "TR",
+      code: "TR",
 
-      flag:
-        "https://flagcdn.com/w40/tr.png",
+      flag: "https://flagcdn.com/w40/tr.png",
 
-      name:
-        "Турция",
+      name: "Турция",
 
-      currency:
-        "TRY",
+      currency: "TRY",
 
-      symbol:
-        "₺",
+      symbol: "₺",
 
-      rate:
-        MANUAL_RATES.TRY_PER_TMT
+      rate: MANUAL_RATES.TRY_PER_TMT
 
     };
 
@@ -1912,37 +1402,18 @@ function detectPayerCountry(
 }
 
 
+function formatMoney(value) {
 
-/* =========================================
-   ФОРМАТ ДЕНЕГ
-========================================= */
-
-function formatMoney(
-  value
-) {
-
-  return Number(
-    value
-  ).toLocaleString(
+  return Number(value).toLocaleString(
     "ru-RU",
     {
-
-      minimumFractionDigits:
-        2,
-
-      maximumFractionDigits:
-        2
-
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     }
   );
 
 }
 
-
-
-/* =========================================
-   РАСЧЁТ ОПЛАТЫ
-========================================= */
 
 function updatePaymentCalculation() {
 
@@ -1968,20 +1439,15 @@ function updatePaymentCalculation() {
 
     payerHint.textContent =
       payerPhoneInput.value
-
         ? "Поддерживаются номера +7 (Россия) и +90 (Турция)"
-
         : "+7 — Россия · +90 — Турция";
 
 
-    paymentSummary.classList.add(
-      "hidden"
-    );
+    paymentSummary.classList.add("hidden");
 
     return;
 
   }
-
 
 
   payerFlag.src =
@@ -1991,10 +1457,7 @@ function updatePaymentCalculation() {
     country.name;
 
 
-
-  if (
-    country.code === "RU"
-  ) {
+  if (country.code === "RU") {
 
     payerHint.textContent =
       "Россия · оплата в рублях";
@@ -2007,20 +1470,13 @@ function updatePaymentCalculation() {
   }
 
 
+  if (!amount || amount <= 0) {
 
-  if (
-    !amount ||
-    amount <= 0
-  ) {
-
-    paymentSummary.classList.add(
-      "hidden"
-    );
+    paymentSummary.classList.add("hidden");
 
     return;
 
   }
-
 
 
   const total =
@@ -2036,28 +1492,16 @@ function updatePaymentCalculation() {
 
   receivedText.textContent =
     formatMoney(amount)
-      .replace(
-        ",00",
-        ""
-      ) +
+      .replace(",00", "") +
     " TMT поступит на номер";
 
 
-  paymentSummary.classList.remove(
-    "hidden"
-  );
+  paymentSummary.classList.remove("hidden");
 
 }
 
 
-
-/* =========================================
-   КНОПКА ПОПОЛНЕНИЯ
-========================================= */
-
-if (
-  mobileTopupOpen
-) {
+if (mobileTopupOpen) {
 
   mobileTopupOpen.addEventListener(
     "click",
@@ -2079,31 +1523,17 @@ closeTopup.addEventListener(
 );
 
 
-
-/* =========================================
-   ЗАКРЫТИЕ ПО ФОНУ
-========================================= */
-
 topupModal.addEventListener(
   "click",
   function (event) {
 
-    if (
-      event.target === topupModal
-    ) {
-
+    if (event.target === topupModal) {
       closeTopupWindow();
-
     }
 
   }
 );
 
-
-
-/* =========================================
-   АВТОРАСЧЁТ
-========================================= */
 
 payerPhoneInput.addEventListener(
   "input",
@@ -2117,38 +1547,18 @@ tmtAmountInput.addEventListener(
 );
 
 
+function showTopupError(message) {
 
-/* =========================================
-   ПОКАЗАТЬ ОШИБКУ ПОПОЛНЕНИЯ
-========================================= */
-
-function showTopupError(
-  message
-) {
-
-  topupMessage.textContent =
-    message;
-
-  topupMessage.className =
-    "topup-message error";
+  topupMessage.textContent = message;
+  topupMessage.className = "topup-message error";
 
 }
 
 
+function showTopupSuccess(message) {
 
-/* =========================================
-   ПОКАЗАТЬ УСПЕХ
-========================================= */
-
-function showTopupSuccess(
-  message
-) {
-
-  topupMessage.textContent =
-    message;
-
-  topupMessage.className =
-    "topup-message success";
+  topupMessage.textContent = message;
+  topupMessage.className = "topup-message success";
 
 }
 
@@ -2162,11 +1572,8 @@ topupSubmit.addEventListener(
   "click",
   async function () {
 
-    topupMessage.textContent =
-      "";
-
-    topupMessage.className =
-      "topup-message";
+    topupMessage.textContent = "";
+    topupMessage.className = "topup-message";
 
 
     const tmPhone =
@@ -2187,11 +1594,6 @@ topupSubmit.addEventListener(
       );
 
 
-
-    /* =====================================
-       ПРОВЕРКА НОМЕРА TM
-    ===================================== */
-
     if (!tmPhone) {
 
       showTopupError(
@@ -2204,11 +1606,6 @@ topupSubmit.addEventListener(
 
     }
 
-
-
-    /* =====================================
-       ПРОВЕРКА НОМЕРА ОПЛАТЫ
-    ===================================== */
 
     if (!country) {
 
@@ -2223,15 +1620,7 @@ topupSubmit.addEventListener(
     }
 
 
-
-    /* =====================================
-       ПРОВЕРКА СУММЫ
-    ===================================== */
-
-    if (
-      !amount ||
-      amount <= 0
-    ) {
+    if (!amount || amount <= 0) {
 
       showTopupError(
         "Введите сумму пополнения в манатах."
@@ -2244,11 +1633,6 @@ topupSubmit.addEventListener(
     }
 
 
-
-    /* =====================================
-       РАСЧЁТ
-    ===================================== */
-
     const paymentTotal =
       Number(
         (
@@ -2258,29 +1642,11 @@ topupSubmit.addEventListener(
       );
 
 
-
-    /* =====================================
-       БЛОКИРУЕМ КНОПКУ
-    ===================================== */
-
-    topupSubmit.disabled =
-      true;
-
-    topupSubmit.textContent =
-      "Создаём заказ...";
-
+    topupSubmit.disabled = true;
+    topupSubmit.textContent = "Создаём заказ...";
 
 
     try {
-
-      /* ===================================
-         СОЗДАЁМ ЗАКАЗ ЧЕРЕЗ SUPABASE RPC
-
-         Авторизация НЕ требуется.
-
-         Если пользователь вошёл,
-         Supabase сам привяжет user_id.
-      =================================== */
 
       const result =
         await supabaseClient.rpc(
@@ -2312,9 +1678,7 @@ topupSubmit.addEventListener(
         );
 
 
-      if (
-        result.error
-      ) {
+      if (result.error) {
 
         console.error(
           "Ошибка создания заказа:",
@@ -2333,10 +1697,7 @@ topupSubmit.addEventListener(
         result.data;
 
 
-      if (
-        !rows ||
-        !rows.length
-      ) {
+      if (!rows || !rows.length) {
 
         throw new Error(
           "Supabase не вернул номер заказа."
@@ -2356,100 +1717,34 @@ topupSubmit.addEventListener(
         order.public_token;
 
 
+      if (!orderId || !publicToken) {
 
-      /* ===================================
-         ЗАКАЗ СОЗДАН
-      =================================== */
-
-      showTopupSuccess(
-        "Заказ создан! Номер заказа: " +
-        orderId
-      );
-
-
-      topupSubmit.textContent =
-        "Заказ создан";
-
-
-      /*
-        На этом этапе оплату ещё
-        не запускаем.
-
-        Следующим этапом сюда
-        подключим платёжную систему.
-      */
-
-
-      console.log(
-        "Создан заказ:",
-        {
-          orderId:
-            orderId,
-
-          publicToken:
-            publicToken
-        }
-      );
-
-
-
-      /* ===================================
-         ДОПОЛНИТЕЛЬНО ПОКАЗЫВАЕМ СТАТУС
-      =================================== */
-
-      const existingStatus =
-        document.getElementById(
-          "orderStatus"
+        throw new Error(
+          "Supabase не вернул данные заказа."
         );
-
-
-      if (
-        existingStatus
-      ) {
-
-        existingStatus.remove();
 
       }
 
 
-      const statusBox =
-        document.createElement(
-          "div"
+      /*
+        =====================================
+        ЗАКАЗ СОЗДАН
+
+        Теперь автоматически переходим
+        на страницу конкретного заказа.
+        =====================================
+      */
+
+      window.location.href =
+        "order.html?token=" +
+        encodeURIComponent(
+          publicToken
         );
-
-
-      statusBox.id =
-        "orderStatus";
-
-      statusBox.style.marginTop =
-        "14px";
-
-      statusBox.style.padding =
-        "14px";
-
-      statusBox.style.background =
-        "#f7f7f7";
-
-      statusBox.style.borderRadius =
-        "12px";
-
-      statusBox.innerHTML =
-        "<strong>Заказ создан</strong>" +
-        "<br>" +
-        "<span style='font-size:13px;color:#666'>" +
-        "Статус: Ожидает оплаты" +
-        "</span>";
-
-
-      topupMessage.after(
-        statusBox
-      );
-
-
 
     } catch (error) {
 
       console.error(
+        "Ошибка:",
         error
       );
 
@@ -2480,7 +1775,6 @@ async function checkSession() {
 
   const result =
     await supabaseClient.auth.getSession();
-
 
   const session =
     result.data.session;
@@ -2523,18 +1817,13 @@ if (
     function () {
 
       const serviceSection =
-        document.getElementById(
-          "services"
-        );
+        document.getElementById("services");
 
 
-      if (
-        serviceSection
-      ) {
+      if (serviceSection) {
 
         serviceSection.scrollIntoView({
-          behavior:
-            "smooth"
+          behavior: "smooth"
         });
 
       }
