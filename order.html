@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Заказ — Derrew</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #f6f7f9;
+      font-family: Arial, sans-serif;
+      color: #111827;
+    }
+
+    .order-page {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .order-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    .order-logo {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .order-title {
+      font-size: 30px;
+      margin: 0 0 10px;
+    }
+
+    .order-subtitle {
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+
+    .status-box {
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff7ed;
+      margin-bottom: 25px;
+    }
+
+    .status-label {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .status-value {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .order-info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .info-label {
+      color: #6b7280;
+    }
+
+    .info-value {
+      font-weight: 600;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .payment-box {
+      background: #f3f4f6;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 25px;
+    }
+
+    .payment-title {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .payment-amount {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .payment-button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #111827;
+      color: white;
+    }
+
+    .payment-button:hover {
+      opacity: 0.9;
+    }
+
+    .back-button {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .loading,
+    .error {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .error {
+      color: #b91c1c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .order-page {
+        margin: 20px auto;
+        padding: 12px;
+      }
+
+      .order-card {
+        padding: 22px;
+      }
+
+      .order-title {
+        font-size: 25px;
+      }
+
+      .info-row {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .info-value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="order-page">
+
+    <div class="order-card">
+
+      <div class="order-logo">
+        Derrew
+      </div>
+
+      <div id="loading" class="loading">
+        Загружаем заказ...
+      </div>
+
+      <div id="error" class="error hidden">
+        Не удалось найти заказ.
+      </div>
+
+      <div id="orderContent" class="hidden">
+
+        <h1 class="order-title">
+          Ваш заказ
+        </h1>
+
+        <p class="order-subtitle">
+          Пополнение мобильного номера Turkmenistan
+        </p>
+
+        <div class="status-box">
+
+          <div class="status-label">
+            Статус заказа
+          </div>
+
+          <div id="status" class="status-value">
+            Ожидает оплаты
+          </div>
+
+        </div>
+
+        <div class="order-info">
+
+          <div class="info-row">
+            <div class="info-label">
+              Номер заказа
+            </div>
+
+            <div id="orderId" class="info-value"></div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">
+              Номер Turkmenistan
+            </div>
+
+            <div id="tmPhone" class="info-value"></div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">
+              Номер плательщика
+            </div>
+
+            <div id="payerPhone" class="info-value"></div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">
+              Получит
+            </div>
+
+            <div id="amountTmt" class="info-value"></div>
+          </div>
+
+        </div>
+
+        <div class="payment-box">
+
+          <div class="payment-title">
+            К оплате
+          </div>
+
+          <div id="paymentAmount" class="payment-amount">
+          </div>
+
+        </div>
+
+        <button
+          id="paymentButton"
+          class="payment-button"
+          type="button"
+        >
+          Перейти к оплате
+        </button>
+
+        <a href="index.html" class="back-button">
+          ← Вернуться на главную
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://vrcyoxcfrjwxbnnrlpjy.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_3KP6ogFkjKG3DuE0eeTyiw_eLlnzLDw";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    function getStatusText(status) {
+
+      const statuses = {
+        pending: "Ожидает оплаты",
+        paid: "Оплачено",
+        processing: "Обрабатывается",
+        completed: "Выполнено",
+        failed: "Ошибка",
+        refunded: "Возврат"
+      };
+
+      return statuses[status] || status;
+
+    }
+
+
+    async function loadOrder() {
+
+      const params =
+        new URLSearchParams(window.location.search);
+
+      const token =
+        params.get("token");
+
+      if (!token) {
+
+        document
+          .getElementById("loading")
+          .classList.add("hidden");
+
+        document
+          .getElementById("error")
+          .classList.remove("hidden");
+
+        return;
+      }
+
+
+      const {
+        data,
+        error
+      } = await supabaseClient.rpc(
+        "get_topup_order",
+        {
+          p_public_token: token
+        }
+      );
+
+
+      if (error) {
+
+        console.error(error);
+
+        document
+          .getElementById("loading")
+          .classList.add("hidden");
+
+        document
+          .getElementById("error")
+          .classList.remove("hidden");
+
+        return;
+      }
+
+
+      if (!data || data.length === 0) {
+
+        document
+          .getElementById("loading")
+          .classList.add("hidden");
+
+        document
+          .getElementById("error")
+          .classList.remove("hidden");
+
+        return;
+      }
+
+
+      const order = data[0];
+
+
+      document
+        .getElementById("orderId")
+        .textContent = order.order_id;
+
+
+      document
+        .getElementById("tmPhone")
+        .textContent = order.tm_phone;
+
+
+      document
+        .getElementById("payerPhone")
+        .textContent = order.payer_phone;
+
+
+      document
+        .getElementById("amountTmt")
+        .textContent =
+        Number(order.amount_tmt).toFixed(2) + " TMT";
+
+
+      document
+        .getElementById("paymentAmount")
+        .textContent =
+        Number(order.payment_amount).toFixed(2)
+        + " "
+        + order.currency;
+
+
+      document
+        .getElementById("status")
+        .textContent =
+        getStatusText(order.status);
+
+
+      document
+        .getElementById("loading")
+        .classList.add("hidden");
+
+
+      document
+        .getElementById("orderContent")
+        .classList.remove("hidden");
+
+
+      document
+        .getElementById("paymentButton")
+        .addEventListener("click", function() {
+
+          alert(
+            "Оплата будет подключена на следующем этапе."
+          );
+
+        });
+
+    }
+
+
+    loadOrder();
+
+  </script>
+
+</body>
+</html>
